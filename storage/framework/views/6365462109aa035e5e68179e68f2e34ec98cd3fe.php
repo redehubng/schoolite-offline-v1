@@ -180,7 +180,7 @@
                                         <div class="form-group">
                                             <label class="font-normal control-label">Admission number *</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="admin_number" required="" value="<?php echo e(old('admin_number')); ?>">
+                                                <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="admin_number" required="" value="<?php echo e(isset($admin_number) ? $admin_number : old('admin_number')); ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -216,7 +216,7 @@
                                            <select class="form-control input-lg" name="guardian_id" required="">
                                                <option>--select-</option>
                                                <?php $__currentLoopData = $guardians; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guardian): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                                <option value="<?php echo e($guardian->id); ?>" <?php echo e(old('guardian_id') == $guardian->id ? 'selected' : ''); ?>><?php echo e($guardian->name); ?></option>
+                                                <option value="<?php echo e($guardian->id); ?>" <?php echo e(old('guardian_id') == $guardian->id ? 'selected' : ''); ?>><?php echo e($guardian->name . ' (' . $guardian->phone .  ')'); ?></option>
                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                            </select>
                                        </div>

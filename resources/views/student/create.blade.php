@@ -181,7 +181,7 @@
                                         <div class="form-group">
                                             <label class="font-normal control-label">Admission number *</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="admin_number" required="" value="{{ old('admin_number') }}">
+                                                <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="admin_number" required="" value="{{ isset($admin_number) ? $admin_number : old('admin_number') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                            <select class="form-control input-lg" name="guardian_id" required="">
                                                <option>--select-</option>
                                                @foreach($guardians as $guardian)
-                                                <option value="{{ $guardian->id }}" {{ old('guardian_id') == $guardian->id ? 'selected' : ''}}>{{ $guardian->name }}</option>
+                                                <option value="{{ $guardian->id }}" {{ old('guardian_id') == $guardian->id ? 'selected' : ''}}>{{ $guardian->name . ' (' . $guardian->phone .  ')' }}</option>
                                                @endforeach
                                            </select>
                                        </div>

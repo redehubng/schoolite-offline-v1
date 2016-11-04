@@ -30,10 +30,12 @@ class StudentController extends Controller
         $classrooms = Classroom::all();
         $guardians = Guardian::where('status', '=', 'active')->get();
         $countries = Country::all();
+        $admin_number = generate_student_admin_number();
+
         return view('student.create')
             ->with('houses', $houses)
             ->with('classrooms', $classrooms)
-            ->with('guardians', $guardians)->with('countries', $countries);
+            ->with('guardians', $guardians)->with('countries', $countries)->with('admin_number', $admin_number);
     }
 
     public function store(Requests\StoreNewStudent $request){
