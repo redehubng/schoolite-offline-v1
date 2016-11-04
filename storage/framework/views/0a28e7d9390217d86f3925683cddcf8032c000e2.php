@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Admin - dashboard'); ?>
+<?php $__env->startSection('title', 'Dashboard'); ?>
 
 <?php $__env->startSection('styles'); ?>
 

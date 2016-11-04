@@ -75,39 +75,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-money"></i> <span class="nav-label">Financial</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_flot.html"><i class="fa fa-cc-mastercard"></i>Payments</a></li>
-                        <li><a href="graph_flot.html"><i class="fa fa-pie-chart"></i>Payments history</a></li>
-                    </ul>
-                </li>
-                <li>
                     <a href="{{ url('/admin/users') }}"><i class="fa fa-user"></i> <span class="nav-label">User Account</span></a>
-                </li>
-
-                <li>
-                    <a href="{{ url('/admin/statistics') }}"><i class="fa fa-line-chart"></i> <span class="nav-label">Statistics</span></a>
-                </li>
-
-                <li>
-                    <a href="#"><i class="fa fa-info-circle"></i> <span class="nav-label">Notification</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_flot.html"><i class="fa fa-phone"></i>SMS</a></li>
-                        <li><a href="graph_flot.html"><i class="fa fa-envelope-o"></i>EMail</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-building"></i> <span class="nav-label">Hostels</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-cloud"></i> <span class="nav-label">Backup</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-calendar"></i> <span class="nav-label">Calendar</span></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-info"></i> <span class="nav-label">News and updates  </span></a>
                 </li>
             @endif
 
