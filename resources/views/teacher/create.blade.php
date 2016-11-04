@@ -205,7 +205,7 @@
                                     <div class="form-group">
                                         <label class="font-normal control-label">Staff ID *</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="staff_id" required="" value="{{ isset($staff_id) ? 'S' . $staff_id : old('staff_id') }}">
+                                            <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="staff_id" required="" value="{{ isset($staff_id) ?  $staff_id : old('staff_id') }}">
                                         </div>
                                     </div>
                                 </div>

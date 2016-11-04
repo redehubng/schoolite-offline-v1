@@ -193,7 +193,7 @@
                                     <div class="form-group">
                                         <label class="font-normal control-label">Guardian ID *</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="guardian_id" required="" value="{{ old('guardian_id') }}">
+                                            <span class="input-group-addon"><i class="fa fa-key"></i></span><input type="text" class="form-control input-lg" name="guardian_id" required="" value="{{ isset($guardian_id) ? $guardian_id : old('guardian_id') }}">
                                         </div>
                                     </div>
                                 </div>

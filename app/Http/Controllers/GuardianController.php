@@ -24,8 +24,8 @@ class GuardianController extends Controller
 
     public function create(){
         $countries = Country::all();
-
-        return view('guardian.create')->with(['countries' => $countries]);
+        $guardian_id = generate_guardian_id();
+        return view('guardian.create')->with(['countries' => $countries, 'guardian_id' => $guardian_id]);
     }
 
 
