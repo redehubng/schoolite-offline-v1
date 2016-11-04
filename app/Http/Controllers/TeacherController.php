@@ -38,7 +38,8 @@ class TeacherController extends Controller
 
         $countries = Country::all();
 
-        return view('teacher.create')->with(['countries' => $countries]);
+        $staff_id = generate_staff_id();
+        return view('teacher.create')->with(['countries' => $countries, 'staff_id' => $staff_id]);
     }
 
     public function store(Requests\StoreNewTeacher $request){

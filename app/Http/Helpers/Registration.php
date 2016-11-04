@@ -18,3 +18,15 @@ function generate_student_admin_number($format = '2018/2019'){
         return '';
     }
 }
+
+
+function generate_staff_id($format = '2018/2019'){
+
+    $staff_ids = \App\Teacher::all()->pluck('staff_id')->toArray();
+
+
+    $last_staff_id = (int)str_replace('S', '0',array_last($staff_ids));
+
+    return str_pad(++$last_staff_id, 4, '0', 0);
+
+}
