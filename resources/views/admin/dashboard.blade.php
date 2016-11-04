@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Admin - dashboard')
+@section('title', 'Dashboard')
 
 @section('styles')
 
