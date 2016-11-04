@@ -43,7 +43,7 @@ function generate_guardian_id(){
 
         $guardian_id =  str_pad(++$last_guardian_id, 4, '0', 0);
 
-        return 'G' . $session->name . $guardian_id;
+        return 'G' . $session->name . '/' . $guardian_id;
     }else{
         return '';
     }
