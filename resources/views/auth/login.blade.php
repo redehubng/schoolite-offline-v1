@@ -19,7 +19,7 @@
         <div>
             <div>
 
-                <h1 class="logo-name">rh+</h1>
+                <img src="{{ asset('img/logo.jpg') }}" class="img-circle circle-border m-b-md" alt="logo" width="200px">
 
             </div>
             <h3>Welcome to School name portal</h3>

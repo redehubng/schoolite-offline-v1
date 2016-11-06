@@ -33,7 +33,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>{{ 'First Semester' }} </h5>
+                    <h5>First term</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-down"></i>
@@ -126,7 +126,7 @@
              <div class="col-lg-12">
                  <div class="ibox float-e-margins">
                      <div class="ibox-title">
-                         <h5>{{ 'Second semester' }} </h5>
+                         <h5>Second term </h5>
                          <div class="ibox-tools">
                              <a class="collapse-link">
                                  <i class="fa fa-chevron-down"></i>
@@ -218,7 +218,7 @@
                  <div class="col-lg-12">
                      <div class="ibox float-e-margins">
                          <div class="ibox-title">
-                             <h5>{{ ' Third semester ' }} </h5>
+                             <h5>Third term </h5>
                              <div class="ibox-tools">
                                  <a class="collapse-link">
                                      <i class="fa fa-chevron-down"></i>

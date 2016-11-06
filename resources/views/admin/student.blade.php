@@ -26,17 +26,20 @@
                 <div class="modal-dialog">
                     <div class="modal-content animated bounceInRight">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-                                <img src="{{ asset('storage/' . $student->image) }}" class="img-circle circle-border m-b-md" alt="profile">
+                                <img id="image_upload_preview" data-holder-rendered="true" src="{{ asset('storage/' . $student->image) }}"  class="img-circle circle-border m-b-md" alt="student passport" width="100px">
 
                                 <h4 class="modal-title">{{ $student->name }}</h4>
 
                             </div>
+                            <form method="POST" class="form" enctype="multipart/form-data" action="{{ url('admin/students/' . $student->id) }}">
                             <div class="modal-body">
 
-                                <form method="POST" class="form" enctype="multipart/form-data" action="{{ url('admin/students') }}">
-                             {{ csrf_field() }}
+
+
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
 
                               @if (count($errors) > 0)
                                  <!-- Form Error List -->
@@ -55,20 +58,21 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="control-label">Surname *</label>
-                                                 <input placeholder="surname" class="form-control input-lg" type="text" name="surname" value="{{ $student->name }}" required>
+
+                                                 <input placeholder="surname" class="form-control input-lg" type="text" name="surname" value="{{ trim(explode(' ', $student->name)[0]) }}" required>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="control-label">First name *</label>
-                                                <input placeholder="first name" class="form-control input-lg" type="text" name="first_name" value="{{ $student->name }}" required>
+                                                <input placeholder="first name" class="form-control input-lg" type="text" name="first_name" value="{{ trim(explode(' ', $student->name)[1]) }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="control-label">Middle name *</label>
-                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ $student->name }}" required>
+                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ isset(explode(' ', $student->name)[2]) ? trim(explode(' ', $student->name)[2]) : null }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +91,7 @@
                                             <div class="form-group">
                                                 <label class="font-normal control-label">DOB *</label>
                                                 <div class="input-group date">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="dob" class="form-control input-lg" name="dob" value="{{ $student->dob }}" required>
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="dob" class="form-control input-lg" name="dob" value="{{ $student->dob->format('m/d/Y') }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,13 +173,15 @@
                                </div>
                            </div>
 
-                    </form>
+
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
+
+                     </form>
                      </div>
                 </div>
             </div>

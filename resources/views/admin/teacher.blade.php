@@ -19,7 +19,147 @@
             </ol>
         </div>
         <div class="col-lg-2">
+             <button type="button" class="btn btn-primary m-t-md" data-toggle="modal" data-target="#edit-teacher-info">
+                Edit info
+            </button>
+             <div class="modal inmodal" id="edit-teacher-info" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated bounceInRight">
+                            <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
+                                <img id="image_upload_preview" data-holder-rendered="true" src="{{ asset('storage/' . $teacher->image) }}"  class="img-circle circle-border m-b-md" alt="student passport" width="100px">
+
+                                <h4 class="modal-title">{{ $teacher->name }}</h4>
+
+                            </div>
+                            <form method="POST" class="form" enctype="multipart/form-data" action="{{ url('admin/teachers/' . $teacher->id) }}">
+                            <div class="modal-body">
+
+
+
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+
+                              @if (count($errors) > 0)
+                                 <!-- Form Error List -->
+                                 <div class="alert alert-danger">
+                                     <strong>Whoops! Something went wrong!</strong>
+                                     <ul>
+                                         @foreach ($errors->all() as $error)
+                                             <li>{{ $error }}</li>
+                                         @endforeach
+                                     </ul>
+                                 </div>
+                             @endif
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Surname *</label>
+
+                                                 <input placeholder="surname" class="form-control input-lg" type="text" name="surname" value="{{ trim(explode(' ', $teacher->name)[0]) }}" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="control-label">First name *</label>
+                                                <input placeholder="first name" class="form-control input-lg" type="text" name="first_name" value="{{ trim(explode(' ', $teacher->name)[1]) }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Middle name *</label>
+                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ isset(explode(' ', $teacher->name)[2]) ? trim(explode(' ', $teacher->name)[2]) : null }}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Sex *</label>
+                                                <select class="form-control input-lg" name="sex" required="">
+                                                    <option></option>
+                                                    <option value="Male" {{ $teacher->sex == 'Male' ? 'selected' : '' }}>Male</option>
+                                                    <option value="Female" {{ $teacher->sex == 'Female' ? 'selected' : '' }}>Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="font-normal control-label">DOB *</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="dob" class="form-control input-lg" name="dob" value="{{ $teacher->dob->format('m/d/Y') }}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Phone</label>
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-phone"></i></span><input type="tel" placeholder="phone" class="form-control input-lg" name="phone"  value="{{ $teacher->phone }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                           <div class="row">
+                               <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Email</label>
+                                          <div class="input-group">
+                                              <span class="input-group-addon"><i class="fa fa-at"></i></span><input type="email" placeholder="email" name="email" class="form-control input-lg" value="{{ $teacher->email }}">
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                   <div class="form-group">
+                                       <label class="control-label">Address *</label>
+                                       <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-home"></i></span><input type="text" placeholder="address" class="form-control input-lg" name="address" required value="{{ $teacher->address }}">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+
+                           <div class="row">
+                                 <div class="col-lg-12">
+                                   <div class="form-group">
+                                       <label class="control-label">Salary *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-money"></i></span><input type="number" class="form-control input-lg" name="salary" required="" value="{{ $teacher->salary or old('salary') }}">
+                                        </div>
+                                   </div>
+                               </div>
+                               <div class="col-lg-3">
+                                   <div class="form-group">
+                                       <label class="control-label">Marital status *</label>
+                                       <select class="form-control input-lg" name="marital_status" required="">
+                                           <option value="Single" {{ $teacher->marital_status == 'Single' ? 'selected' : '' }}>Single</option>
+                                           <option value="Married" {{ $teacher->marital_status == 'Married' ? 'selected' : '' }}>Married</option>
+                                           <option value="Other" {{ $teacher->marital_status == 'Other' ? 'selected' : '' }}>Other</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+
+                     </form>
+                     </div>
+                </div>
+            </div>
         </div>
 </div>
 @endsection
@@ -156,13 +296,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($teacher->classrooms as $class)
+                                    @foreach($teacher->classrooms as $classroom)
                                         <tr>
-                                            <td>{{ $class->name }}</td>
-                                            <td>{{ $class->level->name }}</td>
-                                            <td>{{ '' }}</td>
-                                            <td>{{ '' }}</td>
-                                            <td>{{ '' }}</td>
+                                            <td>{{ $classroom->name }}</td>
+                                            <td>{{ $classroom->level->name }}</td>
+                                            <td>{{ $classroom->female_students()->count() }}</td>
+                                            <td>{{ $classroom->male_students()->count() }}</td>
+                                            <td>{{ $classroom->total_students() }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -248,9 +388,9 @@
                                                     @foreach($teacher->houses as $house)
                                                         <tr>
                                                             <td>{{ $house->name }}</td>
-                                                            <td>{{ '' }}</td>
-                                                            <td>{{ '' }}</td>
-                                                            <td>{{ '' }}</td>
+                                                            <td>{{ $house->females()->count() }}</td>
+                                                            <td>{{ $house->males()->count() }}</td>
+                                                            <td>{{ $house->total() }}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>

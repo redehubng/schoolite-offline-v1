@@ -123,4 +123,9 @@ class StudentController extends Controller
     }
 
 
+    public function update(Request $request, $id){
+        return back()->with('message', 'you cant update student record');
+    }
+
+
 }

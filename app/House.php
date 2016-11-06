@@ -15,11 +15,11 @@ class House extends Model
 
 
     public function females(){
-        return $this->students()->where('sex', '=', 'Female');
+        return $this->students()->where('sex', '=', 'Female')->get();
     }
 
     public function males(){
-        return $this->students()->where('sex', '=', 'male');
+        return $this->students()->where('sex', '=', 'male')->get();
     }
 
     public function teacher()

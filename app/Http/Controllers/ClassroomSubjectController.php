@@ -15,4 +15,14 @@ class ClassroomSubjectController extends Controller
 
         return back()->with('message', 'Subject added to classroom');
     }
+
+    public function update(Request $request, $id){
+        $classroom_subject = ClassroomSubject::find($id);
+
+        $classroom_subject->teacher_id = $request->teacher_id;
+
+        $classroom_subject->save();
+
+        return back()->with('message', 'Subject teacher updated');
+    }
 }

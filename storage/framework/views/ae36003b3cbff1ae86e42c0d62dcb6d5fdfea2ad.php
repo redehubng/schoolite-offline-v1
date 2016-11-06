@@ -1,21 +1,19 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', $classroom->name); ?>
 
-@section('title', $classroom->name)
+<?php $__env->startSection('styles'); ?>
+<link href="<?php echo e(asset('css/plugins/dataTables/datatables.min.css')); ?>" rel="stylesheet">
+<?php $__env->stopSection(); ?>
 
-@section('styles')
-<link href="{{ asset('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
-@endsection
-
-@section('page-heading')
+<?php $__env->startSection('page-heading'); ?>
 <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{{ $classroom->name }} - {{ $subject->subject->name }}</h2>
+            <h2><?php echo e($classroom->name); ?> - <?php echo e($subject->subject->name); ?></h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ url('teacher') }}">Home</a>
+                    <a href="<?php echo e(url('teacher')); ?>">Home</a>
                 </li>
                 <li class="active">
-                    <a href="{{ url('teacher/classrooms/' . $classroom->id . '/subjects/' . $subject->id) }}">{{ $subject->subject->name }}</a>
+                    <a href="<?php echo e(url('teacher/classrooms/' . $classroom->id . '/subjects/' . $subject->id)); ?>"><?php echo e($subject->subject->name); ?></a>
                 </li>
             </ol>
         </div>
@@ -23,19 +21,19 @@
 
         </div>
  </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
  <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
 
-@if($session->term() == 'first')
+<?php if($session->term() == 'first'): ?>
      <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Update students {{ $session->term() }} term result</h5>
+                    <h5>Update students <?php echo e($session->term()); ?> term result</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -62,49 +60,52 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($students as $student)
+                                <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <tr class="gradeX">
-                                    <td>{{ $student->admin_number }}</td>
-                                    <td><a href="#" title="Alaba profile" target="_blank">{{ $student->name }}</a></td>
-                                    <td>{{ $student->sex }}</td>
+                                    <td><?php echo e($student->admin_number); ?></td>
+                                    <td><a href="#" title="Alaba profile" target="_blank"><?php echo e($student->name); ?></a></td>
+                                    <td><?php echo e($student->sex); ?></td>
 
                                     <?php $score = $student->student_subject_session_term_result($subject->id, $session->id, 'first') ?>
 
-                                      <form method="POST" action="{{ url('teacher/classrooms/'. $classroom->id .'/subjects/' . $subject->id . '/students/' .$student->id. '/results/create') }}">
-                                          <input type="hidden" name="student_id" value="{{ $student->id }}">
-                                          <input type="hidden" name="classroom_id" value="{{ $classroom->id }}">
-                                          <input type="hidden" name="subject_id" value="{{ $subject->id }}">
-                                          <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-                                          <input type="hidden" name="session_id" value="{{ $session->id }}">
-                                          <input type="hidden" name="term" value="{{ $session->term() }}">
+                                      <form method="POST" action="<?php echo e(url('teacher/classrooms/'. $classroom->id .'/subjects/' . $subject->id . '/students/' .$student->id. '/results/create')); ?>">
+                                          <input type="hidden" name="student_id" value="<?php echo e($student->id); ?>">
+                                          <input type="hidden" name="classroom_id" value="<?php echo e($classroom->id); ?>">
+                                          <input type="hidden" name="subject_id" value="<?php echo e($subject->id); ?>">
+                                          <input type="hidden" name="teacher_id" value="<?php echo e($teacher->id); ?>">
+                                          <input type="hidden" name="session_id" value="<?php echo e($session->id); ?>">
+                                          <input type="hidden" name="term" value="<?php echo e($session->term()); ?>">
 
                                           <td style="width: 13%;">
                                               <div class="input-group">
-                                                  <input type="number" name="first_ca" class="form-control first_ca" value="{{ !is_null($score) ? $score->first_ca : '' }}" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
+                                                  <input type="number" name="first_ca" class="form-control first_ca" value="<?php echo e(!is_null($score) ? $score->first_ca : ''); ?>" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
                                               </div>
                                           </td>
                                           <td style="width: 13%;">
                                               <div class="input-group">
-                                                  <input type="number" name="second_ca" class="form-control second_ca" value="{{ !is_null($score) ? $score->second_ca : '' }}" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
+                                                  <input type="number" name="second_ca" class="form-control second_ca" value="<?php echo e(!is_null($score) ? $score->second_ca : ''); ?>" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
                                               </div>
                                           </td>
                                           <td style="width: 13%;">
                                               <div class="input-group">
-                                                  <input type="number" name="exam" class="form-control exam" value="{{ !is_null($score) ? $score->exam : '' }}" max="60" min="0"><span class="input-group-addon"><i>/60</i></span>
+                                                  <input type="number" name="exam" class="form-control exam" value="<?php echo e(!is_null($score) ? $score->exam : ''); ?>" max="60" min="0"><span class="input-group-addon"><i>/60</i></span>
                                               </div>
                                           </td>
                                       </form>
                                       <td class="total-score">
-                                           {{ !is_null($score) ? $score->total() : '' }}
+                                           <?php echo e(!is_null($score) ? $score->total() : ''); ?>
+
                                       </td>
                                       <td class="score-grade">
-                                        {{ !is_null($score) ? $score->grade() : '' }}
+                                        <?php echo e(!is_null($score) ? $score->grade() : ''); ?>
+
                                       </td>
                                       <td class="score-position">
-                                        {{ !is_null($score) ? $score->position() : '' }}
+                                        <?php echo e(!is_null($score) ? $score->position() : ''); ?>
+
                                       </td>
                                 </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -125,12 +126,12 @@
             </div>
         </div>
     </div>
-@elseif($session->term() == 'second')
+<?php elseif($session->term() == 'second'): ?>
           <div class="row">
              <div class="col-lg-12">
                  <div class="ibox float-e-margins">
                      <div class="ibox-title">
-                         <h5>Update students {{ $session->term() }} term result</h5>
+                         <h5>Update students <?php echo e($session->term()); ?> term result</h5>
                          <div class="ibox-tools">
                              <a class="collapse-link">
                                  <i class="fa fa-chevron-up"></i>
@@ -157,49 +158,52 @@
                                      </tr>
                                      </thead>
                                      <tbody>
-                                     @foreach($students as $student)
+                                     <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                      <tr class="gradeX">
-                                         <td>{{ $student->admin_number }}</td>
-                                         <td><a href="#" title="Alaba profile" target="_blank">{{ $student->name }}</a></td>
-                                         <td>{{ $student->sex }}</td>
+                                         <td><?php echo e($student->admin_number); ?></td>
+                                         <td><a href="#" title="Alaba profile" target="_blank"><?php echo e($student->name); ?></a></td>
+                                         <td><?php echo e($student->sex); ?></td>
 
                                          <?php $score = $student->student_subject_session_term_result($subject->id, $session->id, 'second') ?>
 
-                                           <form method="POST" action="{{ url('teacher/classrooms/'. $classroom->id .'/subjects/' . $subject->id . '/students/' .$student->id. '/results/create') }}">
-                                               <input type="hidden" name="student_id" value="{{ $student->id }}">
-                                               <input type="hidden" name="classroom_id" value="{{ $classroom->id }}">
-                                               <input type="hidden" name="subject_id" value="{{ $subject->id }}">
-                                               <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-                                               <input type="hidden" name="session_id" value="{{ $session->id }}">
-                                               <input type="hidden" name="term" value="{{ $session->term() }}">
+                                           <form method="POST" action="<?php echo e(url('teacher/classrooms/'. $classroom->id .'/subjects/' . $subject->id . '/students/' .$student->id. '/results/create')); ?>">
+                                               <input type="hidden" name="student_id" value="<?php echo e($student->id); ?>">
+                                               <input type="hidden" name="classroom_id" value="<?php echo e($classroom->id); ?>">
+                                               <input type="hidden" name="subject_id" value="<?php echo e($subject->id); ?>">
+                                               <input type="hidden" name="teacher_id" value="<?php echo e($teacher->id); ?>">
+                                               <input type="hidden" name="session_id" value="<?php echo e($session->id); ?>">
+                                               <input type="hidden" name="term" value="<?php echo e($session->term()); ?>">
 
                                                <td style="width: 13%;">
                                                    <div class="input-group">
-                                                       <input type="number" name="first_ca" class="form-control first_ca" value="{{ !is_null($score) ? $score->first_ca : '' }}" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
+                                                       <input type="number" name="first_ca" class="form-control first_ca" value="<?php echo e(!is_null($score) ? $score->first_ca : ''); ?>" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
                                                    </div>
                                                </td>
                                                <td style="width: 13%;">
                                                    <div class="input-group">
-                                                       <input type="number" name="second_ca" class="form-control second_ca" value="{{ !is_null($score) ? $score->second_ca : '' }}" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
+                                                       <input type="number" name="second_ca" class="form-control second_ca" value="<?php echo e(!is_null($score) ? $score->second_ca : ''); ?>" max="20" min="0"><span class="input-group-addon"><i>/20</i></span>
                                                    </div>
                                                </td>
                                                <td style="width: 13%;">
                                                    <div class="input-group">
-                                                       <input type="number" name="exam" class="form-control exam" value="{{ !is_null($score) ? $score->exam : '' }}" max="60" min="0"><span class="input-group-addon"><i>/60</i></span>
+                                                       <input type="number" name="exam" class="form-control exam" value="<?php echo e(!is_null($score) ? $score->exam : ''); ?>" max="60" min="0"><span class="input-group-addon"><i>/60</i></span>
                                                    </div>
                                                </td>
                                            </form>
                                            <td class="total-score">
-                                                {{ !is_null($score) ? $score->total() : '' }}
+                                                <?php echo e(!is_null($score) ? $score->total() : ''); ?>
+
                                            </td>
                                            <td class="score-grade">
-                                             {{ !is_null($score) ? $score->grade() : '' }}
+                                             <?php echo e(!is_null($score) ? $score->grade() : ''); ?>
+
                                            </td>
                                            <td class="score-position">
-                                             {{ !is_null($score) ? $score->position() : '' }}
+                                             <?php echo e(!is_null($score) ? $score->position() : ''); ?>
+
                                            </td>
                                      </tr>
-                                     @endforeach
+                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                      </tbody>
                                      <tfoot>
                                      <tr>
@@ -220,16 +224,16 @@
                  </div>
              </div>
          </div>
-@endif
+<?php endif; ?>
 
  </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 
-<script src=" {{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+<script src=" <?php echo e(asset('js/plugins/dataTables/datatables.min.js')); ?>"></script>
         <script>
                  $(document).ready(function(){
 
@@ -297,4 +301,5 @@
                   });
 
          </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

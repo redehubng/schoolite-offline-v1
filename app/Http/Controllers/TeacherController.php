@@ -164,6 +164,7 @@ class TeacherController extends Controller
         $result = Result::where('classroom_id', '=', $classroom_id)
             ->where('subject_id', '=', $subject_id)
             ->where('student_id', '=', $student_id)
+            ->where('term', '=', $request->term)
             ->where('teacher_id', '=', $request->teacher_id)->first();
 
 
@@ -197,25 +198,40 @@ class TeacherController extends Controller
         return $score;
     }
 
-    public function showStudentResults(Request $request, $classroom_id, $student_id){
+//    public function showStudentResults(Request $request, $classroom_id, $student_id){
+//
+//        $student = Student::with('guardian', 'classroom')->where('id', '=', $student_id)->first();
+//
+//
+//
+//        if(isset($request->session_id) && isset($request->term) && !is_null($request->session_id) && !is_null($request->term)){
+//            $results = Result::where('classroom_id', '=', $classroom_id)
+//                ->where('student_id', '=', $student_id)
+//                ->where('session_id', '=', $request->session_id)->where('term', '=', $request->term)->get();
+//
+//            if($request->term == 'first') {
+//                return view('student.first_term_result')->with('results', $results)->with('student',  $student);
+//            }elseif($request->term == 'second') {
+//                return view('student.second_term_result')->with('results', $results)->with('student',  $student);
+//            }
+//        }else{
+//
+//        }
+//
+//
+//    }
 
-        $student = Student::with('guardian', 'classroom')->where('id', '=', $student_id)->first();
+    public function update(Request $request, $id){
 
+        $teacher = Teacher::find($id);
 
+        $teacher->salary = $request->salary;
+        $teacher->marital_status = $request->marital_status;
+        $teacher->address = $request->address;
 
-        if(isset($request->session_id) && isset($request->term) && !is_null($request->session_id) && !is_null($request->term)){
-            $results = Result::where('classroom_id', '=', $classroom_id)
-                ->where('student_id', '=', $student_id)
-                ->where('session_id', '=', $request->session_id)->where('term', '=', $request->term)->get();
+        $teacher->save();
 
-            if($request->term == 'first') {
-
-                return view('student.first_term_result')->with('results', $results)->with('student',  $student);
-            }
-        }else{
-
-        }
-
+        return back()->with('message', 'teacher record updated successfully');
 
     }
 }

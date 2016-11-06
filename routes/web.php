@@ -103,13 +103,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('admin/classrooms', 'ClassroomController@index')->name('admin_classrooms');
         Route::post('admin/classrooms', 'ClassroomController@store')->name('admin_create_classrooms');
         Route::get('admin/classrooms/{classroom_id}', 'ClassroomController@show')->name('admin_view_classroom');
-        Route::put('admin/classrooms/{classroom_id}/update', 'ClassroomController@update')->name('admin_update_classroom');
+        Route::put('admin/classrooms/{classroom_id}', 'ClassroomController@update')->name('admin_update_classroom');
         Route::delete('admin/classrooms/{classroom_id}/destroy', 'ClassroomController@destroy')->name('admin_delete_classroom');
 
         Route::get('admin/subjects', 'SubjectController@index')->name('admin_subjects');
         Route::post('admin/subjects', 'SubjectController@store')->name('admin_create_subjects');
 
         Route::post('admin/classroom_subjects', 'ClassroomSubjectController@store')->name('admin_create_classroomsubject');
+        Route::put('admin/classroom_subjects/{classroomsubject_id}', 'ClassroomSubjectController@update')->name('admin_update_classroomsubject');
 
         Route::get('admin/results', 'AdminController@showResults')->name('admin_show_results');
 
@@ -126,7 +127,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::post('teacher/classrooms/{classroom_id}/subjects/{subject_id}/students/{student_id}/results/create', 'TeacherController@storeStudentSubjectScore')->name('teacher_store_student_subject_scores');
-    Route::get('teacher/classrooms/{classroom_id}/students/{student_id}/results', 'TeacherController@showStudentResults')->name('teacher_show_student_results_scores');
+    Route::get('teacher/classrooms/{classroom_id}/students/{student_id}/results', 'StudentController@showResults')->name('teacher_show_student_results_scores');
 
     Route::get('guardian', 'GuardianController@dashboard');
     Route::get('guardian/wards/{student_id}', 'GuardianController@showWard');

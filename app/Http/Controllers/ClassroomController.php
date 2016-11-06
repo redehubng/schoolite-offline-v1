@@ -13,14 +13,16 @@ use App\Http\Requests;
 
 class ClassroomController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $teachers = Teacher::all();
         $classrooms = Classroom::all();
         $levels = Level::all();
         return view('classroom.index')->with('teachers', $teachers)->with('classrooms', $classrooms)->with('levels', $levels);
     }
 
-    public function store(Requests\StoreNewClassroom $request){
+    public function store(Requests\StoreNewClassroom $request)
+    {
 
         Classroom::create([
             'name' => $request->name,
@@ -35,7 +37,8 @@ class ClassroomController extends Controller
 
     }
 
-    public function show($classroom_id){
+    public function show($classroom_id)
+    {
         $classroom = Classroom::with('students')->where('id', '=', $classroom_id)->firstOrFail();
         $teachers = Teacher::all();
         $levels = Level::all();
@@ -52,7 +55,8 @@ class ClassroomController extends Controller
     }
 
 
-    public function edit($classroom_id){
+    public function edit($classroom_id)
+    {
         $classroom = Classroom::where('id', '=', $classroom_id)->firstOrFail();
         $teachers = Teacher::all();
         $levels = Level::all();
@@ -62,4 +66,20 @@ class ClassroomController extends Controller
             ->with('teachers', $teachers)
             ->with('levels', $levels);
     }
+
+    public function update(Request $request, $id)
+    {
+        $classroom = Classroom::find($id);
+
+        $classroom->teacher_id = $request->teacher_id;
+        $classroom->first_term_charges = $request->first_term_charges;
+        $classroom->second_term_charges = $request->second_term_charges;
+        $classroom->third_term_charges = $request->third_term_charges;
+
+        $classroom->save();
+
+        return back()->with('message', 'Classroom updated');
+    }
+
+
 }

@@ -1,21 +1,19 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', $classroom->name); ?>
 
-@section('title', $classroom->name)
+<?php $__env->startSection('styles'); ?>
 
-@section('styles')
+<?php $__env->stopSection(); ?>
 
-@endsection
-
-@section('page-heading')
+<?php $__env->startSection('page-heading'); ?>
 <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{{ $classroom->name }} Students</h2>
+            <h2><?php echo e($classroom->name); ?> Students</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ url('teacher') }}">Home</a>
+                    <a href="<?php echo e(url('teacher')); ?>">Home</a>
                 </li>
                 <li class="active">
-                    <a href="{{ url('admin/classrooms/' . $classroom->id) }}">{{ $classroom->name }}</a>
+                    <a href="<?php echo e(url('admin/classrooms/' . $classroom->id)); ?>"><?php echo e($classroom->name); ?></a>
                 </li>
             </ol>
         </div>
@@ -23,53 +21,53 @@
 
         </div>
  </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="wrapper wrapper-content">
-@if(isset($session) && !is_null($session) && $session->term() === 'third')
-{{--<div class="row m-b-md">--}}
+<?php if(isset($session) && !is_null($session) && $session->term() === 'third'): ?>
 
-    {{--<div class="col-lg-6">--}}
-        {{--<form action="{{ url('teacher/classrooms/' . $classroom->id . '/promote_all') }}" method="post" id="promote-all">--}}
-        {{--{!! csrf_field() !!}--}}
-             {{--<div class="input-group m-b"><span class="input-group-btn">--}}
-                 {{--<button  type="submit" class="btn btn-primary btn-block" id="promote-all">Promote all to</button></span> <select class="form-control" name="classroom_id">--}}
-                    {{--@foreach($classrooms as $promoted_to_class)--}}
-                        {{--@if($promoted_to_class->level->rank > $class->level->rank)--}}
-                            {{--<option value="{{ $promoted_to_class->id }}">{{ $promoted_to_class->name }}</option>--}}
-                        {{--@endif--}}
-                    {{--@endforeach--}}
-                 {{--</select>--}}
-             {{--</div>--}}
 
-        {{--</form>--}}
-    {{--</div>--}}
+    
+        
+        
+             
+                 
+                    
+                        
+                            
+                        
+                    
+                 
+             
 
-    {{--<div class="col-lg-6">--}}
-        {{--<form action="{{ url('teacher/classrooms/' . $classroom->id . '/repeat_all') }}" method="post" id="repeat-all">--}}
-        {{--{{ csrf_field() }}--}}
-                {{--<div class="input-group m-b"><span class="input-group-btn">--}}
-                     {{--<button  type="submit" class="btn btn-warning btn-block" id="repeat-all">Repeat all to</button></span> <select class="form-control">--}}
-                     {{--@foreach($classrooms as $repeated_to_class)--}}
-                         {{--@if($classroom->level->rank >= $repeated_to_class->level->rank )--}}
-                             {{--<option value="{{ $repeated_to_class->id }}">{{ $repeated_to_class->name }}</option>--}}
-                         {{--@endif--}}
-                     {{--@endforeach--}}
-                     {{--</select>--}}
-                 {{--</div>--}}
-        {{--</form>--}}
-    {{--</div>--}}
+        
+    
 
-{{--</div>--}}
-@endif
+    
+        
+        
+                
+                     
+                     
+                         
+                             
+                         
+                     
+                     
+                 
+        
+    
+
+
+<?php endif; ?>
 
 
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>List of all students in {{ $classroom->name }}</h5>
+                <h5>List of all students in <?php echo e($classroom->name); ?></h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -93,21 +91,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($classroom->students as $student)
+                                    <?php $__currentLoopData = $classroom->students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                     <tr class="gradeA">
-                                        <td>{{ $student->admin_number }}</td>
-                                        <td>{{ $student->name }}</td>
-                                        <td>{{ $student->sex }}</td>
-                                        <td>{{ $student->house->name }}</td>
-                                        <td>{{ $student->guardian->name }}</td>
+                                        <td><?php echo e($student->admin_number); ?></td>
+                                        <td><?php echo e($student->name); ?></td>
+                                        <td><?php echo e($student->sex); ?></td>
+                                        <td><?php echo e($student->house->name); ?></td>
+                                        <td><?php echo e($student->guardian->name); ?></td>
                                         <td class="center">
                                             <div class="btn-group">
-                                                <a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('teacher/classrooms/' .  $classroom->id  . '/students/' . $student->id ) }}">View</a>
+                                                <a type="button" class="btn btn-outline btn-xs btn-primary" href="<?php echo e(url('teacher/classrooms/' .  $classroom->id  . '/students/' . $student->id )); ?>">View</a>
                                             </div>
                                         </td>
 
                                     </tr>
-                                   @endforeach
+                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                     </tbody>
                                     <tfoot>
                                     <tr>
@@ -128,13 +126,13 @@
 </div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 
-<script src=" {{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
+<script src=" <?php echo e(asset('js/plugins/dataTables/datatables.min.js')); ?>"></script>
         <script>
                  $(document).ready(function(){
 
@@ -166,4 +164,5 @@
 
 
          </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

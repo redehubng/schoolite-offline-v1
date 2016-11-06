@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Session;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class StoreStudentSubjectScore extends FormRequest
 {
@@ -11,10 +13,16 @@ class StoreStudentSubjectScore extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(Request $request)
     {
+        $session = Session::where('status', '=', 'active')->first();
 
+
+        if(isset($session) && !is_null($session) && $request->term == $session->term() ){
         return true;
+        }
+
+        return false;
     }
 
     /**

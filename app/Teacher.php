@@ -14,6 +14,7 @@ class Teacher extends Model
     ];
 
 
+    protected $dates = ['created_at', 'updated_at', 'dob', 'date_employed'];
 
     public function user(){
         return $this->belongsTo('App\User');
