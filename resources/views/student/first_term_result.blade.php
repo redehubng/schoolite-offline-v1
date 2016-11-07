@@ -2,7 +2,6 @@
 
 @section('title',  $student->name)
 
-@section('result-heading')
 
 @section('result-heading')
 <img src="{{ asset('img/banner.jpg') }}" class="m-b-xs" alt="profile" width="100%">
@@ -24,15 +23,15 @@
                                 Reg Number: <strong> {{ $student->admin_number }} </strong>
                             </td>
                             <td>
-                                <strong>Level</strong> {{ $student->classroom->level->name }}
+                                <strong>Level</strong> {{ $results->first()->classroom->level->name }}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Class: <strong> {{ $student->classroom->name }} </strong>
+                                Class: <strong> {{ $results->first()->classroom->name }} </strong>
                             </td>
                             <td>
-                                No in class: <strong> {{ $student->classroom->students()->count() }} </strong>
+                                No in class: <strong> {{ $results->first()->classroom_students_count() }} </strong>
                             </td>
                             <td>
                               <strong>Class teacher</strong> {{ $student->classroom->teacher->name }}
@@ -45,7 +44,7 @@
                                 Percentage: <strong> {{ $student->term_percentage($results) . '%' }} </strong>
                             </td>
                             <td>
-                                Position: <strong> {{ $student->first_term_position() }} </strong>
+                                Position: <strong> {{ $student->first_term_position($results->first()->session_id) }} </strong>
                             </td>
                             <td>
                               <strong>Next term begins</strong>

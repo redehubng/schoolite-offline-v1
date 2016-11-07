@@ -114,7 +114,8 @@ class Student extends Model
             $session_id = Session::where('status', '=', 'active')->firstOrFail()->pluck('id');
         }
 
-        $percentages = classroom_percentages($this->classroom_id, $session_id, 'first');
+        $percentages = classroom_percentages($this->first_term_results($session_id)->first()->classroom_id, $session_id, 'first');
+
 
         $first_term_results = $this->first_term_results($session_id);
 
@@ -128,7 +129,7 @@ class Student extends Model
             $session_id = Session::where('status', '=', 'active')->firstOrFail()->pluck('id');
         }
 
-        $percentages = classroom_percentages($this->classroom_id, $session_id, 'second');
+        $percentages = classroom_percentages($this->second_term_results($session_id)->first()->classroom_id, $session_id, 'second');
 
         $second_term_results = $this->second_term_results($session_id);
 
@@ -147,7 +148,7 @@ class Student extends Model
             $session_id = Session::where('status', '=', 'active')->firstOrFail()->pluck('id');
         }
 
-        $percentages = classroom_percentages($this->classroom_id, $session_id, 'second');
+        $percentages = classroom_percentages($this->third_term_results($session_id)->first()->classroom_id, $session_id, 'third');
 
         $third_term_results = $this->third_term_results($session_id);
 

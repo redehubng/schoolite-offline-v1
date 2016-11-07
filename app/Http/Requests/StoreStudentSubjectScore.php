@@ -19,7 +19,7 @@ class StoreStudentSubjectScore extends FormRequest
 
 
         if(isset($session) && !is_null($session) && $request->term == $session->term() ){
-        return true;
+              return true;
         }
 
         return false;

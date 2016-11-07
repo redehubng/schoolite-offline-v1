@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Session;
+use App\Student;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,6 +22,9 @@ class SessionController extends Controller
            'name' => $request->name,
            'status' => 'active',
         ]);
+
+        Student::where('status', '=', 'promoted')->orWhere('status', '=', 'repeated')->update(['status' => 'active']);
+
 
         return redirect('admin/sessions')->with('message', 'session created successfully');
     }
@@ -94,6 +98,18 @@ class SessionController extends Controller
     }
 
     public function closeSession(Requests\CloseSession $request){
+
+
+        $students_count = Student::where('status', '=', 'active')->count();
+
+        if($students_count > 0){
+            return back()->with('message', $students_count . ' students have not yet been promoted or repeated');
+        }else{
+            Student::where('status', '=', 'promoting')->update(['status' => 'promoted']);
+
+            Student::where('status', '=', 'repeating')->update(['status' => 'repeated']);
+        }
+
 
         $session = Session::find($request->session_id);
 

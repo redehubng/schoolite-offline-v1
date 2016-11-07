@@ -108,9 +108,17 @@ class TeacherController extends Controller
     public function showClassroom($classroom_id){
         $classroom = Classroom::with(['students', 'teacher', 'level'])->findOrFail($classroom_id);
         $classrooms = Classroom::all();
+
+        $students = $classroom->active_students();
+        $promoted_students = $classroom->promoted_students();
+
+        //dd($students);
+
         return view('teacher.classroom')
             ->with('classroom', $classroom)
             ->with('teacher', $classroom->teacher)
+            ->with('students', $students)
+            ->with('promoted_students', $promoted_students)
             ->with('classrooms', $classrooms);
     }
 
@@ -156,7 +164,12 @@ class TeacherController extends Controller
     public function showTeacherClassroom($classroom_id){
         $classroom = Classroom::with('students', 'subjects')->firstOrFail($classroom_id);
         $classrooms = Classroom::all();
-        return view('teacher.classroom')->with('classroom', $classroom)->with('classrooms', $classrooms);
+        $students = $classroom->students()->where('status', '=', 'active');
+
+
+        return view('teacher.classroom')->with('classroom', $classroom)
+            ->with('classrooms', $classrooms)
+            ->with('students', $students);
     }
 
 
@@ -234,5 +247,66 @@ class TeacherController extends Controller
 
         return back()->with('message', 'teacher record updated successfully');
 
+    }
+
+
+    public function promoteStudent(Requests\PromoteStudent $request, $classroom_id, $student_id){
+
+        $student = Student::find($student_id);
+
+        if($student->status == 'active'){
+            $student->previous_classroom_id = $classroom_id;
+            $student->classroom_id = $request->promoted_to_classroom_id;
+            $student->status = 'promoting';
+
+            $student->save();
+        }else{
+            return back()->with('message', 'Students cant be promoted');
+        }
+
+
+        return back()->with('message', 'Students promoted successfully');
+
+    }
+
+    public function promoteAllStudent(Requests\PromoteAllStudent $request, $classroom_id){
+
+        Student::where('classroom_id', '=', $classroom_id)->where('status', '=', 'active')->update([
+            'previous_classroom_id' => $classroom_id,
+            'classroom_id' => $request->promoted_to_classroom_id,
+            'status' => 'promoting'
+        ]);
+
+        return back()->with('message', 'Students promoted successfully');
+    }
+
+    public function repeatStudent(Requests\RepeatStudent $request, $classroom_id, $student_id){
+
+        $student = Student::find($student_id);
+
+        if($student->status == 'active'){
+            $student->previous_classroom_id = $classroom_id;
+            $student->classroom_id = $request->repeated_to_classroom_id;
+            $student->status = 'repeating';
+
+            $student->save();
+        }else{
+            return back()->with('message', 'Students cant be repeated');
+        }
+
+
+        return back()->with('message', 'Students repeated successfully');
+
+    }
+
+    public function repeatAllStudent(Requests\RepeatAllStudent $request, $classroom_id){
+
+        Student::where('classroom_id', '=', $classroom_id)->where('status', '=', 'active')->update([
+            'previous_classroom_id' => $classroom_id,
+            'classroom_id' => $request->repeated_to_classroom_id,
+            'status' => 'repeating'
+        ]);
+
+        return back()->with('message', 'Students repeated successfully');
     }
 }

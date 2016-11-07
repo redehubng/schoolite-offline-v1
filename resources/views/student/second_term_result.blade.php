@@ -29,18 +29,18 @@
                                 Reg Number: <strong> {{ $student->admin_number }} </strong>
                             </td>
                             <td>
-                                <strong>Level</strong> {{ $student->classroom->level->name }}
+                                <strong>Level</strong> {{ $results->first()->classroom->level->name }}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Class: <strong> {{ $student->classroom->name }} </strong>
+                                Class: <strong> {{ $results->first()->classroom->name }} </strong>
                             </td>
                             <td>
-                                No in class: <strong> {{ $student->classroom->students()->count() }} </strong>
+                                No in class: <strong> {{ $results->first()->classroom_students_count() }} </strong>
                             </td>
                             <td>
-                              <strong>Class teacher</strong> {{ $student->classroom->teacher->name }}
+                              <strong>Class teacher</strong> {{ $results->first()->classroom->teacher->name }}
                             </td>
                         </tr>
 

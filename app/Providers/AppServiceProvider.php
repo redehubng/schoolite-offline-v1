@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Session;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if($session = Session::where('status', 'active')->first()) {
+
+
+
+        if(Schema::hasTable('sessions') && $session = Session::where('status', 'active')->first()) {
             View::share('session', Session::where('status', 'active')->first());
         }else{
             View::share('session', null);

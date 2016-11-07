@@ -22,6 +22,18 @@ class Classroom extends Model
         return $this->students()->count();
     }
 
+    public function active_students(){
+        return $this->students()->where('status', '=', 'active')->get();
+    }
+
+    public function promoted_students(){
+        return $this->students()->where('status', '=', 'promoted')->orWhere('status', '=', 'promoting')->get();
+    }
+
+    public function repeated_students(){
+        return $this->students()->where('status', '=', 'repeated')->orWhere('status', '=', 'repeating')->get();
+    }
+
     public function students(){
         return $this->hasMany('App\Student', 'classroom_id');
     }

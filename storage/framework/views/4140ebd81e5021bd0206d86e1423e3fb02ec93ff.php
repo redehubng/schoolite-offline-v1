@@ -27,19 +27,19 @@
                                 Reg Number: <strong> <?php echo e($student->admin_number); ?> </strong>
                             </td>
                             <td>
-                                <strong>Level</strong> <?php echo e($student->classroom->level->name); ?>
+                                <strong>Level</strong> <?php echo e($results->first()->classroom->level->name); ?>
 
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Class: <strong> <?php echo e($student->classroom->name); ?> </strong>
+                                Class: <strong> <?php echo e($results->first()->classroom->name); ?> </strong>
                             </td>
                             <td>
-                                No in class: <strong> <?php echo e($student->classroom->students()->count()); ?> </strong>
+                                No in class: <strong> <?php echo e($results->first()->classroom_students_count()); ?> </strong>
                             </td>
                             <td>
-                              <strong>Class teacher</strong> <?php echo e($student->classroom->teacher->name); ?>
+                              <strong>Class teacher</strong> <?php echo e($results->first()->classroom->teacher->name); ?>
 
                             </td>
                         </tr>

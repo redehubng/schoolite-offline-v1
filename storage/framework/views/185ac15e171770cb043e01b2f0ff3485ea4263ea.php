@@ -1,6 +1,5 @@
 <?php $__env->startSection('title',  $student->name); ?>
 
-<?php $__env->startSection('result-heading'); ?>
 
 <?php $__env->startSection('result-heading'); ?>
 <img src="<?php echo e(asset('img/banner.jpg')); ?>" class="m-b-xs" alt="profile" width="100%">
@@ -22,16 +21,16 @@
                                 Reg Number: <strong> <?php echo e($student->admin_number); ?> </strong>
                             </td>
                             <td>
-                                <strong>Level</strong> <?php echo e($student->classroom->level->name); ?>
+                                <strong>Level</strong> <?php echo e($results->first()->classroom->level->name); ?>
 
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Class: <strong> <?php echo e($student->classroom->name); ?> </strong>
+                                Class: <strong> <?php echo e($results->first()->classroom->name); ?> </strong>
                             </td>
                             <td>
-                                No in class: <strong> <?php echo e($student->classroom->students()->count()); ?> </strong>
+                                No in class: <strong> <?php echo e($results->first()->classroom_students_count()); ?> </strong>
                             </td>
                             <td>
                               <strong>Class teacher</strong> <?php echo e($student->classroom->teacher->name); ?>
@@ -45,7 +44,7 @@
                                 Percentage: <strong> <?php echo e($student->term_percentage($results) . '%'); ?> </strong>
                             </td>
                             <td>
-                                Position: <strong> <?php echo e($student->first_term_position()); ?> </strong>
+                                Position: <strong> <?php echo e($student->first_term_position($results->first()->session_id)); ?> </strong>
                             </td>
                             <td>
                               <strong>Next term begins</strong>

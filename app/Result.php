@@ -78,6 +78,10 @@ class Result extends Model
         return 'N/A';
     }
 
+    public function classroom_students_count(){
+        return count(array_unique(Result::where('classroom_id', '=', $this->classroom_id)->where('session_id', '=', $this->session_id)->pluck('student_id')->toArray()));
+    }
+
     public function subject(){
         return $this->belongsTo('App\Subject');
     }

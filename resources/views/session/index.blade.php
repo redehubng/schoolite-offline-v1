@@ -61,7 +61,7 @@
                             <h3 class="font-bold no-margins">
                                 active
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                         <form class="m-t-md" method="POST" action="{{ url('admin/sessions/' . $session->id . "/close_first_term" ) }}">
                          {{ csrf_field() }}
@@ -75,14 +75,14 @@
             @elseif($session->first_term === 'closed')
 
                 <div class="col-lg-4">
-                    <div class="widget white-bg p-lg text-center">
+                    <div class="widget white-bg p-lg text-center text-info">
                         <div class="m-b-md">
-                            <i class="fa fa-spinner fa-4x"></i>
+                            <i class="fa fa-check fa-4x"></i>
                             <h1 class="m-xs">{{ term_percentage_done($session->id, 'first') . '%' }}</h1>
                             <h3 class="font-bold no-margins">
                                 closed
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                             <h3 class="font-bold no-margins">
                                 @if($session->first_term === 'closed')  Next term @else Waiting... @endif
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                         @if($session->first_term === 'closed')
                         <form class="m-t-md" method="POST" action="{{ url('admin/sessions/' . $session->id . "/start_second_term" ) }}">
@@ -116,12 +116,12 @@
                 <div class="col-lg-4">
                     <div class="widget white-bg p-lg text-center">
                         <div class="m-b-md">
-                            <i class="fa fa-spinner fa-4x"></i>
+                            <i class="fa fa-check fa-4x"></i>
                             <h1 class="m-xs">{{ term_percentage_done($session->id, 'second') . '%' }}</h1>
                             <h3 class="font-bold no-margins">
                                 active
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                         <form class="m-t-md" method="POST" action="{{ url('admin/sessions/' . $session->id . "/close_second_term" ) }}">
                          {{ csrf_field() }}
@@ -135,14 +135,14 @@
             @elseif($session->second_term === 'closed')
 
                 <div class="col-lg-4">
-                    <div class="widget white-bg p-lg text-center">
+                    <div class="widget white-bg p-lg text-center text-info">
                         <div class="m-b-md">
-                            <i class="fa fa-spinner fa-4x"></i>
+                            <i class="fa fa-check fa-4x"></i>
                             <h1 class="m-xs">{{ term_percentage_done($session->id, 'second') . '%' }}</h1>
                             <h3 class="font-bold no-margins">
                                 closed
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                     </div>
 
@@ -175,12 +175,12 @@
                 <div class="col-lg-4">
                     <div class="widget white-bg p-lg text-center">
                         <div class="m-b-md">
-                            <i class="fa fa-spinner fa-4x"></i>
+                            <i class="fa fa-check fa-4x"></i>
                             <h1 class="m-xs">{{ term_percentage_done($session->id, 'third') . '%' }}</h1>
                             <h3 class="font-bold no-margins">
                                 active
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                         <form class="m-t-md" method="POST" action="{{ url('admin/sessions/' . $session->id . "/close_third_term" ) }}">
                          {{ csrf_field() }}
@@ -194,14 +194,14 @@
             @elseif($session->third_term === 'closed')
 
                 <div class="col-lg-4">
-                    <div class="widget white-bg p-lg text-center">
+                    <div class="widget white-bg p-lg text-center text-info">
                         <div class="m-b-md">
-                            <i class="fa fa-spinner fa-4x"></i>
-                            <h1 class="m-xs">{{ term_percentage_done($session->id, 'second') . '%' }}</h1>
+                            <i class="fa fa-check fa-4x"></i>
+                            <h1 class="m-xs">{{ term_percentage_done($session->id, 'third') . '%' }}</h1>
                             <h3 class="font-bold no-margins">
                                 closed
                             </h3>
-                            <small>Total subject recorded: 9</small>
+                            {{--<small>Total subject recorded: 9</small>--}}
                         </div>
                     </div>
 

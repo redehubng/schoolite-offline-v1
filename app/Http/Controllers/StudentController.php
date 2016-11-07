@@ -95,22 +95,22 @@ class StudentController extends Controller
 
     public function showResults(Request $request, $student_id){
 
-        $student = Student::with('guardian', 'classroom')->where('id', '=', $student_id)->first();
+        $student = Student::with('guardian', 'classroom')->where('id', '=', $request->student_id)->first();
 
 
 
         if(isset($request->session_id) && isset($request->term) && !is_null($request->session_id) && !is_null($request->term)){
 
-            $results = Result::where('student_id', '=', $student_id)
+            $results = Result::where('student_id', '=', $request->student_id)
                 ->where('session_id', '=', $request->session_id)->where('term', '=', $request->term)->get();
-            $session_id =  $request->session_id;
+
 
             if($request->term == 'first') {
-                return view('student.first_term_result')->with('results', $results)->with('student',  $student)->with('session_id', $session_id);
+                return view('student.first_term_result')->with('results', $results)->with('student',  $student)->with('session_id', $request->session_id);
             }elseif($request->term == 'second'){
-                return view('student.second_term_result')->with('results', $results)->with('student',  $student)->with('session_id', $session_id);
+                return view('student.second_term_result')->with('results', $results)->with('student',  $student)->with('session_id', $request->session_id);
             }elseif($request->term == 'third'){
-                return view('student.third_term_result')->with('results', $results)->with('student',  $student)->with('session_id', $session_id);
+                return view('student.third_term_result')->with('results', $results)->with('student',  $student)->with('session_id', $request->session_id);
             }
 
         }else{

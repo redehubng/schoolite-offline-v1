@@ -122,6 +122,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('teacher', 'TeacherController@dashboard')->name('teacher_dashboard');
     Route::get('teacher/classrooms/{classroom_id}', 'TeacherController@showClassroom')->name('teacher_classroom');
+
+    Route::put('teacher/classrooms/{classroom_id}/promote', 'TeacherController@promoteAllStudent')->name('teacher_promote_classroom');
+    Route::put('teacher/classrooms/{classroom_id}/repeat', 'TeacherController@repeatAllStudent')->name('teacher_repeat_classroom');
+
+    Route::put('teacher/classrooms/{classroom_id}/students/{student_id}/promote', 'TeacherController@promoteStudent')->name('teacher_promote_classroom');
+    Route::put('teacher/classrooms/{classroom_id}/students/{student_id}/repeat', 'TeacherController@repeatStudent')->name('teacher_repeat_classroom');
+
     Route::get('teacher/classrooms/{classroom_id}/students/{student_id}', 'TeacherController@showStudent')->name('teacher_classroom_student');
     Route::get('teacher/classrooms/{classroom_id}/subjects/{subject_id}', 'TeacherController@showSubject')->name('teacher_classroom_subject');
 

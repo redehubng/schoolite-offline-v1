@@ -20,7 +20,9 @@ function classroom_percentages($classroom_id, $session_id, $term){
 
     $percentages = [];
 
-    $students = \App\Student::where('classroom_id', '=', $classroom_id)->get();
+    $students_ids = array_unique(\App\Result::where('classroom_id', '=', $classroom_id)->where('session_id', '=', $session_id)->where('term', '=', $term)->pluck('student_id')->toArray());
+
+    $students = \App\Student::find($students_ids);
 
     if($term == 'third'){
         foreach($students as $student){
