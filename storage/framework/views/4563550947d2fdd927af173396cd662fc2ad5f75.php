@@ -193,33 +193,36 @@
 
 <div class="wrapper wrapper-content">
 
-<?php if(isset($session) && !is_null($session) && $session->term() == 'third'): ?>
+<?php if(isset($session) && !is_null($session) && ($session->term() == 'third' || $session->third_term == 'closed')): ?>
 <div class="row m-b-md">
     <div class="col-lg-6">
-            <form action="<?php echo e(url('teacher/classrooms/' . $classroom->id . '/students/'.$student->id.'/promote')); ?>" method="post" id="promote-all">
+            <form action="<?php echo e(url('admin/students/' . $student->id . '/promote')); ?>" method="post" id="promote">
             <?php echo e(csrf_field()); ?>
 
                  <div class="input-group m-b"><span class="input-group-btn">
-                     <button  type="submit" class="btn btn-primary btn-block" id="promote-all">Promote all to</button></span> <select class="form-control" name="classroom_id">
-                        <?php $__currentLoopData = $classrooms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $promoted_to_class): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                            <?php if($promoted_to_class->level->rank > $classroom->level->rank): ?>
-                                <option value="<?php echo e($promoted_to_class->id); ?>"><?php echo e($promoted_to_class->name); ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                     </select>
-                 </div>
+                      <button  type="submit" class="btn btn-primary btn-block" id="promote">Promote to</button></span>
+
+                      <select class="form-control" name="promoted_to_classroom_id">
+                         <?php $__currentLoopData = $classrooms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $promoted_to_classroom): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                             <?php if($student->classroom->level->rank < $promoted_to_classroom->level->rank): ?>
+                                 <option value="<?php echo e($promoted_to_classroom->id); ?>"><?php echo e($promoted_to_classroom->name); ?></option>
+                             <?php endif; ?>
+                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                      </select>
+                  </div>
 
             </form>
         </div>
 
     <div class="col-lg-6">
-        <form action="<?php echo e(url('teacher/classrooms/' . $classroom->id . 'students/'.$student->id.'/repeat')); ?>" method="post" id="repeat-all">
+        <form action="<?php echo e(url('admin/students/' . $student->id . '/repeat')); ?>" method="post" id="repeat">
         <?php echo csrf_field(); ?>
 
                 <div class="input-group m-b"><span class="input-group-btn">
-                     <button  type="submit" class="btn btn-warning btn-block" id="repeat-all">Repeat all to</button></span> <select class="form-control">
+                     <button  type="submit" class="btn btn-warning btn-block" id="repeat-all">Repeat to</button></span>
+                     <select class="form-control" name="repeated_to_classroom_id">
                      <?php $__currentLoopData = $classrooms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $repeated_to_class): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                         <?php if($classroom->level->rank >= $repeated_to_class->level->rank ): ?>
+                         <?php if($student->classroom->level->rank >= $repeated_to_class->level->rank ): ?>
                              <option value="<?php echo e($repeated_to_class->id); ?>"><?php echo e($repeated_to_class->name); ?></option>
                          <?php endif; ?>
                      <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

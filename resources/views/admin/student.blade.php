@@ -193,31 +193,34 @@
 
 <div class="wrapper wrapper-content">
 
-@if(isset($session) && !is_null($session) && $session->term() == 'third')
+@if(isset($session) && !is_null($session) && ($session->term() == 'third' || $session->third_term == 'closed'))
 <div class="row m-b-md">
     <div class="col-lg-6">
-            <form action="{{ url('teacher/classrooms/' . $classroom->id . '/students/'.$student->id.'/promote') }}" method="post" id="promote-all">
+            <form action="{{ url('admin/students/' . $student->id . '/promote') }}" method="post" id="promote">
             {{ csrf_field() }}
                  <div class="input-group m-b"><span class="input-group-btn">
-                     <button  type="submit" class="btn btn-primary btn-block" id="promote-all">Promote all to</button></span> <select class="form-control" name="classroom_id">
-                        @foreach($classrooms as $promoted_to_class)
-                            @if($promoted_to_class->level->rank > $classroom->level->rank)
-                                <option value="{{ $promoted_to_class->id }}">{{ $promoted_to_class->name }}</option>
-                            @endif
-                        @endforeach
-                     </select>
-                 </div>
+                      <button  type="submit" class="btn btn-primary btn-block" id="promote">Promote to</button></span>
+
+                      <select class="form-control" name="promoted_to_classroom_id">
+                         @foreach($classrooms as $promoted_to_classroom)
+                             @if($student->classroom->level->rank < $promoted_to_classroom->level->rank)
+                                 <option value="{{ $promoted_to_classroom->id }}">{{ $promoted_to_classroom->name }}</option>
+                             @endif
+                         @endforeach
+                      </select>
+                  </div>
 
             </form>
         </div>
 
     <div class="col-lg-6">
-        <form action="{{ url('teacher/classrooms/' . $classroom->id . 'students/'.$student->id.'/repeat') }}" method="post" id="repeat-all">
+        <form action="{{ url('admin/students/' . $student->id . '/repeat') }}" method="post" id="repeat">
         {!! csrf_field() !!}
                 <div class="input-group m-b"><span class="input-group-btn">
-                     <button  type="submit" class="btn btn-warning btn-block" id="repeat-all">Repeat all to</button></span> <select class="form-control">
+                     <button  type="submit" class="btn btn-warning btn-block" id="repeat-all">Repeat to</button></span>
+                     <select class="form-control" name="repeated_to_classroom_id">
                      @foreach($classrooms as $repeated_to_class)
-                         @if($classroom->level->rank >= $repeated_to_class->level->rank )
+                         @if($student->classroom->level->rank >= $repeated_to_class->level->rank )
                              <option value="{{ $repeated_to_class->id }}">{{ $repeated_to_class->name }}</option>
                          @endif
                      @endforeach

@@ -155,7 +155,8 @@ class TeacherController extends Controller
 
     public function showTeacherClassroom($classroom_id){
         $classroom = Classroom::with('students', 'subjects')->firstOrFail($classroom_id);
-        return view('teacher.classroom')->with('classroom', $classroom);
+        $classrooms = Classroom::all();
+        return view('teacher.classroom')->with('classroom', $classroom)->with('classrooms', $classrooms);
     }
 
 

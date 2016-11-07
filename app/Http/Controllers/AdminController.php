@@ -99,6 +99,24 @@ class AdminController extends Controller
 
     }
 
+
+
+    public function promoteStudent(Requests\PromoteStudent $request, $student_id){
+
+    }
+
+    public function promoteAllStudent(Requests\PromoteAllStudent $request, $classroom_id){
+
+    }
+
+    public function repeatStudent(Requests\RepeatStudent $request, $student_id){
+
+    }
+
+    public function repeatAllStudent(Requests\RepeatAllStudent $request, $classroom_id){
+
+    }
+
     public function showResults(Request $request){
 
 

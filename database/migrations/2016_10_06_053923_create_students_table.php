@@ -29,7 +29,7 @@ class CreateStudentsTable extends Migration
             $table->string('address');
             $table->string('image', 255)->nullable()->unique();
             $table->text('comment')->nullable();
-            $table->enum('status', ["active", "promoting", "promoted", "repeating", 'repeated', "left", "dismissed". "graduated", 'deactivated'])->default('active');
+            $table->enum('status', ["active", "promoting", "promoted", "repeating", 'repeated', "left", "dismissed", "graduated", 'deactivated'])->default('active');
             $table->unsignedInteger('classroom_id');
             $table->unsignedInteger('house_id');
             $table->unsignedInteger('state_id');

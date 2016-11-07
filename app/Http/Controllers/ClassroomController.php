@@ -42,6 +42,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::with('students')->where('id', '=', $classroom_id)->firstOrFail();
         $teachers = Teacher::all();
         $levels = Level::all();
+        $classrooms = Classroom::all();
         $classroom_subjects = ClassroomSubject::where('classroom_id', '=', $classroom_id)->with('subject', 'teacher', 'classroom')->get();
         $subjects = Subject::all();
 
@@ -51,7 +52,9 @@ class ClassroomController extends Controller
             ->with('teachers', $teachers)
             ->with('levels', $levels)
             ->with('classroom_subjects', $classroom_subjects)
+            ->with('classrooms', $classrooms)
             ->with('subjects', $subjects);
+
     }
 
 
