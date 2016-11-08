@@ -334,7 +334,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label">Session Name *</label>
                             <div class="col-lg-8">
-                                <input placeholder="session name" class="form-control" type="text" name="name" autofocus="" required="">
+                                <input placeholder="session name" class="form-control" type="text" name="name" required="">
                             </div>
                         </div>
 

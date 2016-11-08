@@ -2,7 +2,7 @@
 
 
 
-function generate_student_admin_number($format = '2018/2019'){
+function generate_student_admin_number($format = null){
 
     $session = \App\Session::where('status', '=', 'active')->first();
 
@@ -13,7 +13,7 @@ function generate_student_admin_number($format = '2018/2019'){
 
         $admin_number =  str_pad(++$last_admin_number, 4, '0', 0);
 
-        return $admin_number;
+        return $format . '/' . $admin_number;
     }else{
         return '';
     }

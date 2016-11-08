@@ -100,8 +100,6 @@ class TeacherController extends Controller
 
         $teacher = Teacher::with('classrooms', 'classroom_subjects')->where('staff_id', '=', Auth::user()->username)->first();
 
-
-
         return view('teacher.dashboard', compact('teacher'));
     }
 
@@ -138,14 +136,17 @@ class TeacherController extends Controller
 
     public function showSubject($classroom_id, $subject_id){
 
-        $students = Student::where('classroom_id', '=', $classroom_id)->get();
+        $classroom = Classroom::with(['results', 'students'])->findOrFail($classroom_id);
 
-        $classroom = Classroom::with(['subjects', 'teacher', 'results', 'students'])->findOrFail($classroom_id);
+        $students = $classroom->students()->where('status', '=', 'active')->get();
+
         $subject = ClassroomSubject::where('subject_id', '=', $subject_id)->where('classroom_id', '=', $classroom_id)->first();
+
 
         $session = Session::where('status', 'active')->first();
 
         if(isset($session) && !is_null($session) && $session->status == 'active'){
+
             $subject_results = Result::where('subject_id', '=', $subject_id)
                 ->where('classroom_id', '=', $classroom_id)
                 ->where('session_id', '=', $session->id)->get();
@@ -153,12 +154,14 @@ class TeacherController extends Controller
             $subject_results = null;
         }
 
+        $teacher =  Auth::user()->teacher;
+
         return view('teacher.subject')
             ->with('classroom', $classroom)
-            ->with('teacher', $classroom->teacher)
+            ->with('teacher', $teacher)
             ->with('subject', $subject)
             ->with('subject_results', $subject_results)
-        ->with('students', $students);
+            ->with('students', $students);
     }
 
     public function showTeacherClassroom($classroom_id){
@@ -175,11 +178,12 @@ class TeacherController extends Controller
 
     public function storeStudentSubjectScore(Requests\StoreStudentSubjectScore $request, $classroom_id, $subject_id, $student_id){
 
-        $result = Result::where('classroom_id', '=', $classroom_id)
-            ->where('subject_id', '=', $subject_id)
-            ->where('student_id', '=', $student_id)
-            ->where('term', '=', $request->term)
-            ->where('teacher_id', '=', $request->teacher_id)->first();
+        $result = Result::where('classroom_id', '=', $request->classroom_id)
+                        ->where('subject_id', '=', $request->subject_id)
+                        ->where('student_id', '=', $request->student_id)
+                        ->where('term', '=', $request->term)
+                        ->where('session_id', '=', $request->session_id)
+                        ->where('teacher_id', '=', $request->teacher_id)->get()->first();
 
 
         if(!isset($result) || is_null($result)){
@@ -212,28 +216,6 @@ class TeacherController extends Controller
         return $score;
     }
 
-//    public function showStudentResults(Request $request, $classroom_id, $student_id){
-//
-//        $student = Student::with('guardian', 'classroom')->where('id', '=', $student_id)->first();
-//
-//
-//
-//        if(isset($request->session_id) && isset($request->term) && !is_null($request->session_id) && !is_null($request->term)){
-//            $results = Result::where('classroom_id', '=', $classroom_id)
-//                ->where('student_id', '=', $student_id)
-//                ->where('session_id', '=', $request->session_id)->where('term', '=', $request->term)->get();
-//
-//            if($request->term == 'first') {
-//                return view('student.first_term_result')->with('results', $results)->with('student',  $student);
-//            }elseif($request->term == 'second') {
-//                return view('student.second_term_result')->with('results', $results)->with('student',  $student);
-//            }
-//        }else{
-//
-//        }
-//
-//
-//    }
 
     public function update(Request $request, $id){
 

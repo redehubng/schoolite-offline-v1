@@ -121,7 +121,7 @@
                               <div class="form-group">
                                   <label class="col-lg-2 control-label">Class Name *</label>
                                   <div class="col-lg-8">
-                                      <input placeholder="level name" class="form-control" type="text" name="name" autofocus="" required="">
+                                      <input placeholder="classroom name" class="form-control" type="text" name="name" autofocus="" required="">
                                   </div>
                               </div>
 

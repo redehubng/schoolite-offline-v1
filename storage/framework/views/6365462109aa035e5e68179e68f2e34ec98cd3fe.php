@@ -71,7 +71,7 @@
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label class="control-label">Middle name *</label>
-                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="<?php echo e(old('middle_name')); ?>" required>
+                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="<?php echo e(old('middle_name')); ?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-3">

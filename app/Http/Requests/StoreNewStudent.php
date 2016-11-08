@@ -32,7 +32,7 @@ class StoreNewStudent extends FormRequest
                  'phone'         => 'unique:students,phone',
                  'dob'           => 'required|date',
                  'date_admitted' => 'required|date',
-                 'admin_number'  => 'required|unique:teachers,staff_id',
+                 'admin_number'  => 'required|unique:students,admin_number',
                  'address'       => 'required|min:10',
                  'comment'       => 'required|min:4',
                  'sex'           => 'required|in:Male,Female',
@@ -42,7 +42,7 @@ class StoreNewStudent extends FormRequest
                  'country_id'    => 'required|integer|exists:countries,id',
                  'state_id'      => 'required|integer|exists:states,id',
                  'lga_id'        => 'required|integer|exists:lgas,id',
-                 'image'         => 'required|mimes:jpeg,jpg,png|max:70|unique:teachers,image',
+                 'image'         => 'mimes:jpeg,jpg,png|max:120|unique:students,image',
              ];
 
     }

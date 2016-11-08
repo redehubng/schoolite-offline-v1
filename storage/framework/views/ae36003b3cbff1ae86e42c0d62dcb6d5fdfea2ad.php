@@ -69,6 +69,7 @@
                                     <?php $score = $student->student_subject_session_term_result($subject->subject->id, $session->id, 'first') ?>
 
                                       <form method="POST" action="<?php echo e(url('teacher/classrooms/'. $classroom->id .'/subjects/' . $subject->id . '/students/' .$student->id. '/results/create')); ?>">
+
                                           <input type="hidden" name="student_id" value="<?php echo e($student->id); ?>">
                                           <input type="hidden" name="classroom_id" value="<?php echo e($classroom->id); ?>">
                                           <input type="hidden" name="subject_id" value="<?php echo e($subject->subject->id); ?>">
@@ -373,7 +374,7 @@
 
         $('.subjects-score-dataTables').DataTable({
 
-                pageLength: 25,
+                pageLength: 50,
                 responsive: true,
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
