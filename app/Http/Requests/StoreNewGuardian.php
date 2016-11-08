@@ -28,7 +28,7 @@ class StoreNewGuardian extends FormRequest
             'first_name'    => 'required|min:3',
             'middle_name'   => 'nullable',
             'surname'       => 'required|min:3',
-            'email'         => 'required|email|unique:guardians,email',
+            'email'         => 'email|unique:guardians,email',
             'phone'         => 'required|unique:guardians,phone',
             'guardian_id'   => 'required|unique:guardians,guardian_id',
             'address'       => 'required|min:10',

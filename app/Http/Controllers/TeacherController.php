@@ -84,8 +84,8 @@ class TeacherController extends Controller
         if ($request->hasFile('image')) {
 
             if ($request->file('image')->isValid()) {
-                $path = $request->image->store('img/teacher/profile');
-                $teacher->image = $path;
+                $path = $request->image->store('public/images/teacher/profile');
+                $teacher->image = str_replace('public/', null, $path);
                 $teacher->save();
 
                 return back()->with('Message', 'Teacher record created successfully');

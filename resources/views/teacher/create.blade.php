@@ -85,7 +85,7 @@
                                         <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="control-label">Middle name *</label>
-                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ old('middle_name') }}" required>
+                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ old('middle_name') }}" >
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
@@ -104,7 +104,7 @@
                                             <div class="form-group">
                                                 <label class="font-normal control-label">DOB *</label>
                                                 <div class="input-group date">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="dob" class="form-control input-lg" name="dob" value="{{ old('dob') }}" required>
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="dob" class="form-control input-lg" name="dob" value="{{ old('dob') }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +214,7 @@
                                     <div class="form-group">
                                         <label class="font-normal control-label">Date employed *</label>
                                         <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="date_employed" class="form-control input-lg" name="date_employed" required="" value="{{ old('date_employed') }}">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="date_employed" class="form-control input-lg" name="date_employed" required="" value="{{ old('date_employed') }}">
                                         </div>
                                     </div>
                                 </div>

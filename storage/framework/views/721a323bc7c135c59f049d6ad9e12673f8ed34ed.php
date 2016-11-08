@@ -91,7 +91,7 @@
                                             <div class="form-group">
                                                 <label class="font-normal control-label">DOB *</label>
                                                 <div class="input-group date">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="dob" class="form-control input-lg" name="dob" value="<?php echo e($teacher->dob->format('m/d/Y')); ?>" required>
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="dob" class="form-control input-lg" name="dob" value="<?php echo e($teacher->dob->format('m/d/Y')); ?>" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                         </tr>
                         <tr>
                             <td>
-                                DOB <strong><?php echo e($teacher->dob); ?></strong>
+                                DOB <strong><?php echo e($teacher->dob->format('m/d/Y') . ' ('  . $teacher->dob->diffInYears() . 'yrs)'); ?></strong>
                             </td>
                             <td>
                                 <strong>State of origin</strong> <?php echo e($teacher->state->name); ?>, <?php echo e($teacher->lga->name); ?>

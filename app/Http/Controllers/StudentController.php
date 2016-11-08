@@ -79,8 +79,8 @@ class StudentController extends Controller
         if ($request->hasFile('image')) {
 
             if ($request->file('image')->isValid()) {
-                $path = $request->image->store('images/student/profile');
-                $student->image = $path;
+                $path = $request->image->store('public/images/student/profile');
+                $student->image = str_replace('public/', null, $path);
                 $student->save();
 
                 return back()->with('Message', 'Student record created successfully');

@@ -32,7 +32,7 @@ class AdminController extends Controller
         $total_teachers = $total_female_teachers + $total_male_teachers;
 
         return view('admin.dashboard')->with('total_male_students', $total_male_students)
-            ->with('total_female_students', $total_female_students)->with('total_students', $total_students)->with('total_male_teachers', $total_male_students)
+            ->with('total_female_students', $total_female_students)->with('total_students', $total_students)->with('total_male_teachers', $total_male_teachers)
             ->with('total_female_teachers', $total_female_teachers)->with('total_teachers', $total_teachers);
     }
 

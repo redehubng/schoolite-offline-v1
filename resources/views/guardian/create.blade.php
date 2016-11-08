@@ -82,7 +82,7 @@
                                         <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="control-label">Middle name *</label>
-                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ old('middle_name') }}" required>
+                                                <input placeholder="middle name" class="form-control input-lg" type="text" name="middle_name" value="{{ old('middle_name') }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
@@ -171,7 +171,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Email *</label>
                                           <div class="input-group">
-                                              <span class="input-group-addon"><i class="fa fa-at"></i></span><input type="email" placeholder="email" name="email" class="form-control input-lg" value="{{ old('email') }}" required="">
+                                              <span class="input-group-addon"><i class="fa fa-at"></i></span><input type="email" placeholder="email" name="email" class="form-control input-lg" value="{{ old('email') }}">
                                           </div>
                                     </div>
                                 </div>

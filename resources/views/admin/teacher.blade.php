@@ -91,7 +91,7 @@
                                             <div class="form-group">
                                                 <label class="font-normal control-label">DOB *</label>
                                                 <div class="input-group date">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" id="dob" class="form-control input-lg" name="dob" value="{{ $teacher->dob->format('m/d/Y') }}" required>
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="dob" class="form-control input-lg" name="dob" value="{{ $teacher->dob->format('m/d/Y') }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,7 +203,7 @@
                         </tr>
                         <tr>
                             <td>
-                                DOB <strong>{{ $teacher->dob }}</strong>
+                                DOB <strong>{{ $teacher->dob->format('m/d/Y') . ' ('  . $teacher->dob->diffInYears() . 'yrs)' }}</strong>
                             </td>
                             <td>
                                 <strong>State of origin</strong> {{ $teacher->state->name }}, {{ $teacher->lga->name }}
