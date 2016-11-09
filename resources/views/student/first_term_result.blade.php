@@ -75,11 +75,11 @@
             @foreach($results as $result)
             <tr>
                 <td>{{ $result->subject->name }}</td>
-                <td class="text-center">{{ $result->first_ca }}</td>
-                <td class="text-center">{{ $result->second_ca }}</td>
-                <td class="text-center">{{ $result->first_ca + $result->second_ca}}</td>
-                <td class="text-center">{{ $result->exam }}</td>
-                <td class="text-center">{{ $result->total() }}</td>
+                <td class="text-center">{{ str_pad($result->first_ca, 2, '0', 0) }}</td>
+                <td class="text-center">{{ str_pad($result->second_ca, 2, '0', 0) }}</td>
+                <td class="text-center">{{ str_pad($result->first_ca + $result->second_ca, 2, 0)}}</td>
+                <td class="text-center">{{ str_pad($result->exam, 2, '0') }}</td>
+                <td class="text-center">{{ str_pad($result->total(), 2, '0', 0) }}</td>
                 <td class="text-center">{{ $result->grade() }}</td>
                 <td class="text-center">{{ $result->position() }}</td>
                 <td class="text-center">{{ $result->remark() }}</td>

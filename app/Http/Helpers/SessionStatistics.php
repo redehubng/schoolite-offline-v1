@@ -9,6 +9,7 @@ function term_percentage_done($session_id, $term){
 
     foreach($classrooms as $classroom){
         $total_students_scores_that_should_be_recorded += $classroom->students()->where('status', '=', 'active')->orWhere('previous_classroom_id', '=', $classroom->id)->count() * $classroom->subjects()->count();
+
     }
 
     //dd($total_students_scores_that_should_be_recorded);
@@ -30,7 +31,31 @@ function term_percentage_done($session_id, $term){
 
     }
 
-    //dd($scores_recorded);
+
+    $students = \App\Student::with(['classroom', 'results'])->get();
+    $classrooms = \App\Classroom::with('subjects')->get();
+
+
+//    foreach($students as $student){
+//
+//        foreach($classrooms as $classroom){
+//            if($student->classroom_id == $classroom->id){
+//
+//                foreach($classroom->subjects as $subject){
+//                    $results = $student->results()->where('subject_id', '=', $subject->id);
+//                    while( $results->count() > 1){
+//                        $results->first()->delete();
+//                    }
+//
+//                }
+//
+//            }
+//        }
+//    }
+
+//    var_dump($total_students_scores_that_should_be_recorded);
+//    var_dump(\App\Result::all()->count());
+//    dd($scores_recorded);
 
     if($scores_recorded == 0){
         return 0;

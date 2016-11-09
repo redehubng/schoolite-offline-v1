@@ -108,6 +108,8 @@ class SessionController extends Controller
             Student::where('status', '=', 'promoting')->update(['status' => 'promoted']);
 
             Student::where('status', '=', 'repeating')->update(['status' => 'repeated']);
+
+            Student::where('status', '=', 'graduating')->update(['status' => 'graduated']);
         }
 
 

@@ -98,12 +98,13 @@ class Result extends Model
         if(isset($this) && !is_null($this)){
 
             if($this->grade() == 'A') return 'Excellent';
-            if($this->grade() >= 'B') return 'V.Good';
-            if($this->grade() >= 'C') return 'Good';
-            if($this->grade() >= 'D') return 'Fair';
-            if($this->grade() >= 'F') return 'Poor';
+            if($this->grade() == 'B') return 'V.Good';
+            if($this->grade() == 'C') return 'Good';
+            if($this->grade() == 'D') return 'Fair';
+            if($this->grade() == 'E') return 'Poor';
+            if($this->grade() == 'F') return 'Fail';
 
-            return 'Fail';
+            return 'N/A';
 
         }else{
             return 'N/A';

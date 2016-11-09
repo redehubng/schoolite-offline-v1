@@ -75,11 +75,11 @@
             <?php $__currentLoopData = $results; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $result): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
             <tr>
                 <td><?php echo e($result->subject->name); ?></td>
-                <td class="text-center"><?php echo e($result->first_ca); ?></td>
-                <td class="text-center"><?php echo e($result->second_ca); ?></td>
-                <td class="text-center"><?php echo e($result->first_ca + $result->second_ca); ?></td>
-                <td class="text-center"><?php echo e($result->exam); ?></td>
-                <td class="text-center"><?php echo e($result->total()); ?></td>
+                <td class="text-center"><?php echo e(str_pad($result->first_ca, 2, '0', 0)); ?></td>
+                <td class="text-center"><?php echo e(str_pad($result->second_ca, 2, '0', 0)); ?></td>
+                <td class="text-center"><?php echo e(str_pad($result->first_ca + $result->second_ca, 2, 0)); ?></td>
+                <td class="text-center"><?php echo e(str_pad($result->exam, 2, '0')); ?></td>
+                <td class="text-center"><?php echo e(str_pad($result->total(), 2, '0', 0)); ?></td>
                 <td class="text-center"><?php echo e($result->grade()); ?></td>
                 <td class="text-center"><?php echo e($result->position()); ?></td>
                 <td class="text-center"><?php echo e($result->remark()); ?></td>

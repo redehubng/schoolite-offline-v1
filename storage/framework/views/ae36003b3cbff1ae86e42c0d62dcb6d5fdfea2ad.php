@@ -343,6 +343,37 @@
                         }
                     });
 
+                    $('input.first_ca').change(function(){
+                        if($(this).val() > 20){
+                            $(this).addClass('text-danger');
+                        }else{
+                            if($(this).hasClass('text-danger')) {
+                                $(this).removeClass('text-danger')
+                                }
+                        }
+                    });
+
+                    $('input.second_ca').change(function(){
+                        if($(this).val() > 20){
+                            $(this).addClass('text-danger');
+                        }else{
+                             if($(this).hasClass('text-danger')) {
+                                 $(this).removeClass('text-danger')
+                                 }
+                         }
+                    });
+
+
+                    $('input.exam').change(function(){
+                        if($(this).val() > 60){
+                            $(this).addClass('text-danger');
+                        }else{
+                             if($(this).hasClass('text-danger')) {
+                                 $(this).removeClass('text-danger')
+                                 }
+                         }
+                    });
+
                     var $student_score = $('input.first_ca, input.second_ca, input.exam');
 
 
