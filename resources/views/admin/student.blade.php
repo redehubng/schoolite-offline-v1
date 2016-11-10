@@ -264,9 +264,9 @@
                                             <td class="text-left">
 
                                                 <div class="btn-group">
-                                                    <a class="btn btn-white" type="button" href="{{ url('admin/students/'. $student->id .'/results/session/'.$session->id.'/edit') }}">Edit</a>
+                                                    {{--<a class="btn btn-white" type="button" href="{{ url('admin/students/'. $student->id .'/results/session/'.$session->id.'/edit') }}">Edit</a>--}}
                                                     <a class="btn btn-primary" type="button" href="{{ url('admin/students/'. $student->id .'/results/session/'.$session->id.'/view') }}">View</a>
-                                                    <a class="btn btn-white" type="button" href="{{ url('admin/students/'.$student->id.'/results/session/'.$session->id.'/print') }}">Print</a>
+                                                    {{--<a class="btn btn-white" type="button" href="{{ url('admin/students/'.$student->id.'/results/session/'.$session->id.'/print') }}">Print</a>--}}
                                                 </div>
                                             </td>
                                         </tr>

@@ -88,11 +88,11 @@
                 </li>
 
                 <li class="{{ isActiveRoute('teacher_levels') }}">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Levels</span></a>
+                    <a href="#"><i class="fa fa-level-up"></i> <span class="nav-label">Levels</span></a>
                 </li>
 
                 <li class="{{ isActiveRoute('teacher_classrooms') }}">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Classrooms</span></a>
+                    <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Classrooms</span></a>
                     <ul class="nav nav-second-level collapse">
                          @if($teacher->classrooms->count() == 0)
                           <li>
@@ -101,7 +101,9 @@
                          @else
                          @foreach($teacher->classrooms as $classroom)
                              <li>
-                                <a href="{{ url('teacher/classrooms/' . $classroom->id) }}" target="_blank"><i class="fa fa-expand"></i> <span class="nav-label">{{ $classroom->name }}</span></a>
+                                <a href="{{ url('teacher/classrooms/' . $classroom->id) }}" target="_blank">
+                                    <i class="fa fa-expand"></i> {{ $classroom->name }}
+                                </a>
                              </li>
                          @endforeach
                          @endif
@@ -110,7 +112,7 @@
                 </li>
 
                 <li class="{{ isActiveRoute('teacher_subjects') }}">
-                    <a href="{{ url('/admin') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Subjects</span></a>
+                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Subjects</span></a>
                     <ul class="nav nav-second-level collapse">
                         @if($teacher->classroom_subjects->count() == 0)
                           <li>
@@ -119,7 +121,9 @@
                          @else
                          @foreach($teacher->classroom_subjects as $subject)
                              <li>
-                                <a href="{{ url('teacher/classrooms/' . $subject->classroom_id . '/subjects/' . $subject->subject_id) }}" target="_blank"><i class="fa fa-expand"></i> <span class="nav-label">{{  $subject->classroom->name . ' - ' . $subject->subject->short_name }}</span></a>
+                                <a href="{{ url('teacher/classrooms/' . $subject->classroom_id . '/subjects/' . $subject->subject_id) }}" target="_blank">
+                                    <i class="fa fa-file"></i> {{ $subject->classroom->name . ' ' . $subject->subject->short_name }}
+                                </a>
                              </li>
                          @endforeach
                          @endif

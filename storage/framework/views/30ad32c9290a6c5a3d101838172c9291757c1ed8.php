@@ -88,11 +88,11 @@
                 </li>
 
                 <li class="<?php echo e(isActiveRoute('teacher_levels')); ?>">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Levels</span></a>
+                    <a href="#"><i class="fa fa-level-up"></i> <span class="nav-label">Levels</span></a>
                 </li>
 
                 <li class="<?php echo e(isActiveRoute('teacher_classrooms')); ?>">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Classrooms</span></a>
+                    <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Classrooms</span></a>
                     <ul class="nav nav-second-level collapse">
                          <?php if($teacher->classrooms->count() == 0): ?>
                           <li>
@@ -101,7 +101,10 @@
                          <?php else: ?>
                          <?php $__currentLoopData = $teacher->classrooms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $classroom): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                              <li>
-                                <a href="<?php echo e(url('teacher/classrooms/' . $classroom->id)); ?>" target="_blank"><i class="fa fa-expand"></i> <span class="nav-label"><?php echo e($classroom->name); ?></span></a>
+                                <a href="<?php echo e(url('teacher/classrooms/' . $classroom->id)); ?>" target="_blank">
+                                    <i class="fa fa-expand"></i> <?php echo e($classroom->name); ?>
+
+                                </a>
                              </li>
                          <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                          <?php endif; ?>
@@ -110,7 +113,7 @@
                 </li>
 
                 <li class="<?php echo e(isActiveRoute('teacher_subjects')); ?>">
-                    <a href="<?php echo e(url('/admin')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Subjects</span></a>
+                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Subjects</span></a>
                     <ul class="nav nav-second-level collapse">
                         <?php if($teacher->classroom_subjects->count() == 0): ?>
                           <li>
@@ -119,7 +122,10 @@
                          <?php else: ?>
                          <?php $__currentLoopData = $teacher->classroom_subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                              <li>
-                                <a href="<?php echo e(url('teacher/classrooms/' . $subject->classroom_id . '/subjects/' . $subject->subject_id)); ?>" target="_blank"><i class="fa fa-expand"></i> <span class="nav-label"><?php echo e($subject->classroom->name . ' - ' . $subject->subject->short_name); ?></span></a>
+                                <a href="<?php echo e(url('teacher/classrooms/' . $subject->classroom_id . '/subjects/' . $subject->subject_id)); ?>" target="_blank">
+                                    <i class="fa fa-file"></i> <?php echo e($subject->classroom->name . ' ' . $subject->subject->short_name); ?>
+
+                                </a>
                              </li>
                          <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                          <?php endif; ?>

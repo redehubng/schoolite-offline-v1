@@ -54,7 +54,7 @@
                                             <th>Class</th>
                                             <th>House</th>
                                             <th>Parent</th>
-                                            <th>Action</th>
+                                            {{--<th>Action</th>--}}
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -65,26 +65,26 @@
                                                 {{ $student->admin_number }}
                                             </td>
                                             <td>
-                                                {{ $student->name }}
+                                                <a class="link-info" href="{{ url('admin/students/' . $student->id) }}" target="_blank" title="{{ "View" . ' ' . $student->name . ' details' }}">{{ $student->name }}</a>
                                             </td>
                                             <td>
                                                 {{ $student->sex }}
                                             </td>
                                             <td>
-                                                {{ $student->classroom->name }}
+                                                <a class="link-info" href="{{ url('admin/classrooms/' . $student->classroom->id) }}" target="_blank" title="{{ "View" . ' ' . $student->classroom->name . ' classroom' }}">{{ $student->classroom->name }}</a>
                                             </td>
                                             <td>
-                                                {{ $student->house->name }}
+                                                <a class="link-info" href="{{ url('admin/houses/' . $student->house->id) }}" target="_blank" title="{{ "View" . ' ' . $student->house->name . ' sport house details' }}">{{ $student->house->name }}</a>
                                             </td>
                                             <td>
-                                                {{ $student->guardian->name }}
+                                                <a class="link-info" href="{{ url('admin/guardians/' . $student->guardian->id) }}" target="_blank" title="{{ "View" . ' ' . $student->name . ' guardian details' }}">{{ $student->guardian->name }}</a>
                                             </td>
-                                            <td class="center">
-                                                <div class="btn-group">
-                                                      <a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/students/' . $student->id) }}" target="_blank">View</a>
-                                                      <a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/students/' . $student->id . '/edit') }}" target="_blank">Edit</a>
-                                                </div>
-                                            </td>
+                                            {{--<td class="center">--}}
+                                                {{--<div class="btn-group">--}}
+                                                      {{--<a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/students/' . $student->id) }}" target="_blank">View</a>--}}
+                                                      {{--<a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/students/' . $student->id . '/edit') }}" target="_blank">Edit</a>--}}
+                                                {{--</div>--}}
+                                            {{--</td>--}}
 
                                         </tr>
                                        @endforeach
@@ -98,7 +98,7 @@
                                                 <th>Class</th>
                                                 <th>House</th>
                                                 <th>Parent</th>
-                                                <th>Action</th>
+                                                {{--<th>Action</th>--}}
                                             </tr>
                                         </tr>
                                         </tfoot>

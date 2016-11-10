@@ -13,7 +13,7 @@
                         <tr>
                             <td rowspan="3">
                                 <div class="profile-image">
-                                    <img src="{{ asset('storage/' . $student->image) }}" class="img-rounded m-b-md" alt="profile">
+                                    <img src="{{ is_file(asset('storage/' . $student->image)) ? asset('storage/' . $student->image) : asset('storage/images/' . strtolower($student->sex) . '.png') }}" class="img-rounded m-b-md" alt="profile">
                                 </div>
                             </td>
                             <td>
@@ -41,7 +41,7 @@
 
                         <tr>
                             <td>
-                                Percentage: <strong> {{ $student->term_percentage($results) . '%' }} </strong>
+                                Percentage: <strong> {{ round($student->term_percentage($results), 2) . '%' }} </strong>
                             </td>
                             <td>
                                 Position: <strong> {{ $student->first_term_position($results->first()->session_id) }} </strong>
@@ -57,7 +57,7 @@
 @endsection
 
 @section('result-body')
-        <table class="table" >
+        <table class="table result-table">
             <thead>
             <tr>
                 <th>Subjects</th>

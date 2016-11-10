@@ -8,6 +8,7 @@ use App\Guardian;
 use App\House;
 use App\Result;
 use App\Role;
+use App\Session;
 use App\Student;
 use App\User;
 use Carbon\Carbon;
@@ -26,11 +27,12 @@ class StudentController extends Controller
 
     public function create(){
 
+        $session = Session::where('status', '=', 'active')->first();
         $houses = House::all();
         $classrooms = Classroom::all();
         $guardians = Guardian::where('status', '=', 'active')->get();
         $countries = Country::all();
-        $admin_number = generate_student_admin_number();
+        $admin_number = generate_student_admin_number($session->name);
 
         return view('student.create')
             ->with('houses', $houses)

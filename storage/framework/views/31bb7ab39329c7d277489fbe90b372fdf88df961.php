@@ -12,8 +12,8 @@
 
                                 </h3>
                                 <h4><?php echo e(isset($student->email) ? $student->email : 'no email'); ?>( <?php echo e($student->admin_number); ?> )</h4>
-                                Guardian:<a> <?php echo e($student->guardian->title .' '. $student->guardian->name); ?></a>
-                                <br>Guardian's Email: <a href="<?php echo e("mailto:" . $student->guardian->email); ?>"> <?php echo e($student->classroom->teacher->email); ?></a>
+                                Guardian:<a href=" <?php echo e(url('admin/guardians/' . $student->guardian->id)); ?>" title="<?php echo e('view ' . $student->guardian->name . ' profile'); ?>" target="_blank"> <?php echo e($student->guardian->title .' '. $student->guardian->name); ?></a>
+                                <br>Guardian's Email: <a href="<?php echo e("mailto:" . $student->guardian->email); ?>"> <?php echo e($student->guardian->email); ?></a>
                                 <br>Guardian's Phone: <?php echo e($student->guardian->phone); ?>
 
                             </div>
@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <td>
-                                DOB <strong><?php echo e($student->dob); ?></strong>
+                                DOB <strong><?php echo e($student->dob->format('m/d/Y')); ?></strong>
                             </td>
                              <td>
                                 <strong>Level</strong> <?php echo e($student->classroom->level->name); ?>
@@ -51,10 +51,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong>Class</strong> JSS 1A
+                                <strong>Age</strong> <?php echo e($student->dob->diffInYears()); ?>
+
                             </td>
                             <td>
-                                <strong>House </strong> Green
+                                <strong>House </strong> <?php echo e($student->house->name); ?>
+
                             </td>
                             <td>
                                 <strong>Address</strong> <?php echo e($student->address); ?>

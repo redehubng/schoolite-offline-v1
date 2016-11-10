@@ -52,23 +52,25 @@
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
-                                                <th>Action</th>
+                                                
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php $__currentLoopData = $teachers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $teacher): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                             <tr class="gradeX">
                                                 <td><?php echo e($teacher->staff_id); ?></td>
-                                                <td><a href="#" title="Alaba profile" target="_blank"><?php echo e($teacher->name); ?></a></td>
+                                                <td>
+                                                    <a class="link-info" href="<?php echo e(url('admin/teachers/' . $teacher->id)); ?>" target="_blank" title="<?php echo e("View " . $teacher->name . ' details'); ?>"><?php echo e($teacher->name); ?></a>
+                                                 </td>
                                                 <td><?php echo e($teacher->sex); ?></td>
                                                 <td class="center"><?php echo e($teacher->address); ?></td>
                                                 <td class="center"><?php echo e($teacher->phone); ?></td>
                                                 <td class="center"><?php echo e($teacher->email); ?></td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                          <a type="button" class="btn btn-outline btn-xs btn-primary" href="<?php echo e(url('admin/teachers/' . $teacher->id)); ?>" target="_blank">View</a>
-                                                    </div>
-                                                </td>
+                                                
+                                                    
+                                                          
+                                                    
+                                                
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                             </tbody>
@@ -80,7 +82,7 @@
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
-                                                <th>Action</th>
+                                                
                                             </tr>
                                             </tfoot>
                                         </table>

@@ -52,7 +52,7 @@
                                             <th>Class</th>
                                             <th>House</th>
                                             <th>Parent</th>
-                                            <th>Action</th>
+                                            
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -64,31 +64,27 @@
 
                                             </td>
                                             <td>
-                                                <?php echo e($student->name); ?>
-
+                                                <a class="link-info" href="<?php echo e(url('admin/students/' . $student->id)); ?>" target="_blank" title="<?php echo e("View" . ' ' . $student->name . ' details'); ?>"><?php echo e($student->name); ?></a>
                                             </td>
                                             <td>
                                                 <?php echo e($student->sex); ?>
 
                                             </td>
                                             <td>
-                                                <?php echo e($student->classroom->name); ?>
-
+                                                <a class="link-info" href="<?php echo e(url('admin/classrooms/' . $student->classroom->id)); ?>" target="_blank" title="<?php echo e("View" . ' ' . $student->classroom->name . ' classroom'); ?>"><?php echo e($student->classroom->name); ?></a>
                                             </td>
                                             <td>
-                                                <?php echo e($student->house->name); ?>
-
+                                                <a class="link-info" href="<?php echo e(url('admin/houses/' . $student->house->id)); ?>" target="_blank" title="<?php echo e("View" . ' ' . $student->house->name . ' sport house details'); ?>"><?php echo e($student->house->name); ?></a>
                                             </td>
                                             <td>
-                                                <?php echo e($student->guardian->name); ?>
-
+                                                <a class="link-info" href="<?php echo e(url('admin/guardians/' . $student->guardian->id)); ?>" target="_blank" title="<?php echo e("View" . ' ' . $student->name . ' guardian details'); ?>"><?php echo e($student->guardian->name); ?></a>
                                             </td>
-                                            <td class="center">
-                                                <div class="btn-group">
-                                                      <a type="button" class="btn btn-outline btn-xs btn-primary" href="<?php echo e(url('admin/students/' . $student->id)); ?>" target="_blank">View</a>
-                                                      <a type="button" class="btn btn-outline btn-xs btn-primary" href="<?php echo e(url('admin/students/' . $student->id . '/edit')); ?>" target="_blank">Edit</a>
-                                                </div>
-                                            </td>
+                                            
+                                                
+                                                      
+                                                      
+                                                
+                                            
 
                                         </tr>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
@@ -102,7 +98,7 @@
                                                 <th>Class</th>
                                                 <th>House</th>
                                                 <th>Parent</th>
-                                                <th>Action</th>
+                                                
                                             </tr>
                                         </tr>
                                         </tfoot>

@@ -8389,3 +8389,32 @@ body.md-skin {
     margin: 0;
   }
 }
+/***
+
+**/
+
+.result-table{
+    position: relative;
+    overflow: hidden;
+}
+
+.result-table::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+    opacity: 0.1;
+    background-image: url('http://schoolite-offline.dev/storage/images/female.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: 50%, 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}

@@ -54,23 +54,25 @@
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
-                                                <th>Action</th>
+                                                {{--<th>Action</th>--}}
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($teachers as $teacher)
                                             <tr class="gradeX">
                                                 <td>{{ $teacher->staff_id }}</td>
-                                                <td><a href="#" title="Alaba profile" target="_blank">{{ $teacher->name }}</a></td>
+                                                <td>
+                                                    <a class="link-info" href="{{ url('admin/teachers/' . $teacher->id) }}" target="_blank" title="{{ "View " . $teacher->name . ' details'}}">{{ $teacher->name }}</a>
+                                                 </td>
                                                 <td>{{ $teacher->sex }}</td>
                                                 <td class="center">{{ $teacher->address }}</td>
                                                 <td class="center">{{ $teacher->phone }}</td>
                                                 <td class="center">{{ $teacher->email }}</td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                          <a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/teachers/' . $teacher->id) }}" target="_blank">View</a>
-                                                    </div>
-                                                </td>
+                                                {{--<td class="center">--}}
+                                                    {{--<div class="btn-group">--}}
+                                                          {{--<a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/teachers/' . $teacher->id) }}" target="_blank">View</a>--}}
+                                                    {{--</div>--}}
+                                                {{--</td>--}}
                                             </tr>
                                             @endforeach
                                             </tbody>
@@ -82,7 +84,7 @@
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
-                                                <th>Action</th>
+                                                {{--<th>Action</th>--}}
                                             </tr>
                                             </tfoot>
                                         </table>

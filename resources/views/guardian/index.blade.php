@@ -55,24 +55,26 @@
                                                 <th>Email</th>
                                                 <th>Sex</th>
                                                 <th>Ward(s)</th>
-                                                <th>Action</th>
+                                                {{--<th>Action</th>--}}
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($guardians as $guardian)
                                             <tr class="gradeX">
                                                 <td>{{ $guardian->guardian_id }}</td>
-                                                <td><a href="#" title="Guardian profile" target="_blank">{{ $guardian->name }}</a></td>
+                                                <td>
+                                                    <a class="link-info" href="{{ url('admin/guardians/' . $guardian->id) }}" target="_blank" title="{{ 'view ' . $guardian->name . ' info' }}">{{ $guardian->name }}</a>
+                                                </td>
                                                 <td class="center">{{ $guardian->address }}</td>
                                                 <td class="center">{{ $guardian->phone }}</td>
                                                 <td class="center">{{ $guardian->email }}</td>
                                                 <td>{{ $guardian->sex }}</td>
                                                 <td>{{ $guardian->wards()->count() }}</td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                          <a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/guardians/' . $guardian->id) }}" target="_blank">View</a>
-                                                    </div>
-                                                </td>
+                                                {{--<td class="center">--}}
+                                                    {{--<div class="btn-group">--}}
+                                                          {{--<a type="button" class="btn btn-outline btn-xs btn-primary" href="{{ url('admin/guardians/' . $guardian->id) }}" target="_blank">View</a>--}}
+                                                    {{--</div>--}}
+                                                {{--</td>--}}
                                             </tr>
                                             @endforeach
                                             </tbody>
@@ -85,7 +87,7 @@
                                                 <th>Email</th>
                                                 <th>Sex</th>
                                                 <th>Ward(s)</th>
-                                                <th>Action</th>
+                                                {{--<th>Action</th>--}}
                                             </tr>
                                             </tfoot>
                                         </table>

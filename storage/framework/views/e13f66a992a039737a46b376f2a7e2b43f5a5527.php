@@ -73,7 +73,7 @@
         <div class="widget lazur-bg p-lg text-center">
             <div class="m-b-md">
                 <i class="fa fa-graduation-cap fa-4x"></i>
-                <h1 class="m-xs"><?php echo e($student->term_percentage($student->term_results($session->id, 'first')) . '%'); ?></h1>
+                <h1 class="m-xs"><?php echo e(round($student->term_percentage($student->term_results($session->id, 'first')),2) . '%'); ?></h1>
                 <h3 class="font-bold no-margins">
                     1st Term Results
                 </h3>
@@ -90,7 +90,7 @@
         <div class="widget lazur-bg p-lg text-center">
             <div class="m-b-md">
                 <i class="fa fa-graduation-cap fa-4x"></i>
-                <h1 class="m-xs"><?php echo e($student->term_percentage($student->term_results($session->id, 'second')) . '%'); ?></h1>
+                <h1 class="m-xs"><?php echo e(round($student->term_percentage($student->term_results($session->id, 'second')), 2) . '%'); ?></h1>
                 <h3 class="font-bold no-margins">
                     2nd Term Results
                 </h3>
@@ -107,7 +107,7 @@
         <div class="widget lazur-bg p-lg text-center">
             <div class="m-b-md">
                 <i class="fa fa-graduation-cap fa-4x"></i>
-                <h1 class="m-xs"><?php echo e($student->term_percentage($student->term_results($session->id, 'third')) . '%'); ?></h1>
+                <h1 class="m-xs"><?php echo e(round($student->term_percentage($student->term_results($session->id, 'third')), 2) . '%'); ?></h1>
                 <h3 class="font-bold no-margins">
                     3rd Term Results
                 </h3>

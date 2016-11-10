@@ -11,8 +11,8 @@
                                     {{ $student->name }}
                                 </h3>
                                 <h4>{{ $student->email or 'no email' }}( {{ $student->admin_number }} )</h4>
-                                Guardian:<a> {{ $student->guardian->title .' '. $student->guardian->name }}</a>
-                                <br>Guardian's Email: <a href="{{ "mailto:" . $student->guardian->email }}"> {{ $student->classroom->teacher->email }}</a>
+                                Guardian:<a href=" {{ url('admin/guardians/' . $student->guardian->id) }}" title="{{ 'view ' . $student->guardian->name . ' profile' }}" target="_blank"> {{ $student->guardian->title .' '. $student->guardian->name }}</a>
+                                <br>Guardian's Email: <a href="{{ "mailto:" . $student->guardian->email }}"> {{ $student->guardian->email }}</a>
                                 <br>Guardian's Phone: {{ $student->guardian->phone }}
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <td>
-                                DOB <strong>{{ $student->dob }}</strong>
+                                DOB <strong>{{ $student->dob->format('m/d/Y') }}</strong>
                             </td>
                              <td>
                                 <strong>Level</strong> {{ $student->classroom->level->name }}
@@ -46,10 +46,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong>Class</strong> JSS 1A
+                                <strong>Age</strong> {{ $student->dob->diffInYears() }}
                             </td>
                             <td>
-                                <strong>House </strong> Green
+                                <strong>House </strong> {{ $student->house->name }}
                             </td>
                             <td>
                                 <strong>Address</strong> {{ $student->address }}
