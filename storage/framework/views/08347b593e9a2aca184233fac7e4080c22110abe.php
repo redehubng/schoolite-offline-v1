@@ -16,13 +16,15 @@
 
 </head>
 
-<body class="white-bg">
+<body class="white-bg result-page">
                 <div class="wrapper wrapper-content">
 
 
                    <?php echo $__env->yieldContent('result-heading'); ?>
 
-                   <?php echo $__env->yieldContent('result-body'); ?>;
+                   <?php echo $__env->yieldContent('result-body'); ?>
+
+                   <?php echo $__env->yieldContent('result-footer'); ?>
 
 
     </div>

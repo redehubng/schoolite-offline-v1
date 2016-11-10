@@ -16,13 +16,15 @@
 
 </head>
 
-<body class="white-bg">
+<body class="white-bg result-page">
                 <div class="wrapper wrapper-content">
 
 
                    @yield('result-heading')
 
-                   @yield('result-body');
+                   @yield('result-body')
+
+                   @yield('result-footer')
 
 
     </div>

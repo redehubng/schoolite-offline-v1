@@ -88,3 +88,7 @@
             </tbody>
         </table>
 @endsection
+
+@section('result-footer')
+{{" Comments "}}
+@endsection

@@ -8393,22 +8393,27 @@ body.md-skin {
 
 **/
 
-.result-table{
+
+/*.result-table{*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
+/*}*/
+
+body.result-page{
     position: relative;
     overflow: hidden;
 }
-
-.result-table::before{
+body.result-page::after{
     content: ' ';
     display: block;
     position: absolute;
     left: 40%;
-    top: 30%;
+    top: 50%;
     width: 400px;
     height: 400px;
     z-index: 1;
     opacity: 0.1;
-    background-image: url('http://schoolite-offline.dev/storage/images/female.png');
+    background-image: url('../img/logo.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-position: 50%, 0;
@@ -8417,4 +8422,19 @@ body.md-skin {
     -moz-background-size: cover;
     -webkit-background-size: cover;
     background-size: cover;
+}
+
+
+
+@media print{
+    * { -webkit-print-color-adjust:exact; }
+
+
+    body.result-page::after{
+        top: 35%;
+        left: 40%;
+        content: url('../img/logo.jpg');
+
+
+    }
 }
